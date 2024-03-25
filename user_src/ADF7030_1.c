@@ -94,6 +94,31 @@ void ADF7030Init(void)
     ClearWDT(); // Service the WDT
     CG2214M6_USE_R;
 }
+void ADF7030Init_NoReset(void)
+{
+    SPI_conf();             //初始化spi
+                            //    ADF7030_GPIO_INIT();
+    ADF7030ParameterInit(); //参数初始�?
+    // ADF7030_REST = 0;       //ADF7030芯片初始�?
+    // Delayus(50);
+    // ClearWDT();
+    // ADF7030_REST = 1; //ADF7030芯片初始化完�?
+    ADF7030_CHANGE_STATE(STATE_PHY_ON);
+    WaitForADF7030_FIXED_DATA(); //等待芯片空闲/可接受CMD状�??
+
+    ADF7030_CHANGE_STATE(STATE_PHY_OFF);
+    WaitForADF7030_FIXED_DATA(); //等待芯片空闲/可接受CMD状�??
+    
+    ClearWDT(); // Service the WDT
+    ADF7030_WRITING_PROFILE_FROM_POWERON();
+    ClearWDT(); // Service the WDT
+    if (WORK_TEST == 1)
+        ADF7030_RECEIVING_FROM_POWEROFF();
+    ClearWDT(); // Service the WDT
+    CONFIGURING_THE_POINTERS_FOR_POINTER_BASED_ACCESSES();
+    ClearWDT(); // Service the WDT
+    CG2214M6_USE_R;
+}
 /**
  ****************************************************************************
  * @Function : void ADF7030ParameterInit(void)
@@ -1107,48 +1132,77 @@ void ADF7030_Change_Channel(void)
 			switch (Channels)
 			{
 			  case 1:
+				 PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+				 PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
+				  PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
+				  PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;	  
+				  Radio_Date_Type=1;
+				  Channels=2;
+				  ADF7030Cfg_pointer=ADF7030Cfg;
+				   break;                
+			  case 2:
 				   PROFILE_CH_FREQ_32bit_200002EC = 429175000;
 				   PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005B;
 					PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
 					PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C; 	
 					Radio_Date_Type=1;
-					Channels=2;
+					Channels=3;
 					ADF7030Cfg_pointer=ADF7030Cfg;
 				   break;
-			  case 2:
+			  case 3:
 				   PROFILE_CH_FREQ_32bit_200002EC = 429200000;
 				   PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005B;
 					PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
 					PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C; 
 					Radio_Date_Type=1;
-					Channels=3;
+					Channels=4;
 					ADF7030Cfg_pointer=ADF7030Cfg;
 				   break;
-			  case 3:
+			  case 4:
+				 PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+				 PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
+				  PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
+				  PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;	  
+				  Radio_Date_Type=1;
+				  Channels=1;
+				  ADF7030Cfg_pointer=ADF7030Cfg;
+				   break;
+
+                   
+			  case 11:
+				 PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+				 PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
+				  PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
+				  PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;	  
+				  Radio_Date_Type=1;
+				  Channels=12;
+				  ADF7030Cfg_pointer=ADF7030Cfg;
+				   break;                                       
+			  case 12:              
 				   PROFILE_CH_FREQ_32bit_200002EC = PROFILE_CH1_FREQ_32bit_429HighSpeed;	
 				   PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005B;
 					PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x64000030;
 					PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100E; 
 					Radio_Date_Type=2;
-					Channels=4;
+					Channels=13;
 					ADF7030Cfg_pointer=ADF7030Cfg_4dot8k;
 				   break;
-			  case 4:
+			  case 13:
 				   PROFILE_CH_FREQ_32bit_200002EC = PROFILE_CH2_FREQ_32bit_429HighSpeed;	
 				   PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005B;
 					PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x64000030;
 					PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100E;
 					Radio_Date_Type=2;
-					Channels=5;
+					Channels=14;
 					ADF7030Cfg_pointer=ADF7030Cfg_4dot8k;
 				   break;			   
-			  case 5:
+			  case 14:
 						  PROFILE_CH_FREQ_32bit_200002EC = 426075000;
 					  PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
 				  PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
 				  PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;	  
 				  Radio_Date_Type=1;
-				  Channels=1;
+				  Channels=11;
 				  ADF7030Cfg_pointer=ADF7030Cfg;
 
 				   break;				   

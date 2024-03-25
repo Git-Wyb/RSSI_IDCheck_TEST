@@ -20,13 +20,13 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include <iostm8l151g4.h> // CPU型号
-#include "Pin_define.h"   // 管脚定义
-#include "initial.h"      // 初始化  预定义
-#include "ram.h"          // RAM定义
-#include "ADF7030_1.h"    // 初始化ADF7021
-#include "Timer.h"        // 定时器
-#include "ID_Decode.h"    // ID_Decode处理
+#include <iostm8l151g4.h> // CPU??
+#include "Pin_define.h"   // ????
+#include "initial.h"      // ???  ???
+#include "ram.h"          // RAM??
+#include "ADF7030_1.h"    // ???ADF7021
+#include "Timer.h"        // ???
+#include "ID_Decode.h"    // ID_Decode??
 #include "eeprom.h"       // eeprom
 #include "uart.h"         // uart
 #include "lcd.h"		// lcd
@@ -52,26 +52,26 @@ unsigned char Soft_Version[7]="Ver0.33";
 
 void main(void)
 {
-    _DI();             // 关全局中断
-    OTA_bootloader_enable(); //使用IAP功能做OTA   
-    RAM_clean();       // 清除RAM
-    WDT_init();        //看门狗
-    VHF_GPIO_INIT();   //IO初始化
-    SysClock_Init();   //系统时钟初始化
+    _DI();             // ?????
+    OTA_bootloader_enable(); //??IAP???OTA   
+    RAM_clean();       // ??RAM
+    WDT_init();        //???
+    VHF_GPIO_INIT();   //IO???
+    SysClock_Init();   //???????
     InitialFlashReg(); //flash EEPROM
-    eeprom_sys_load(); //ID载入
-    TIM4_Init();       // 定时器
-    beep_init();       // 蜂鸣器
+    eeprom_sys_load(); //ID??
+    TIM4_Init();       // ???
+    beep_init();       // ???
     ClearWDT();        // Service the WDT
     
     PROFILE_CH_FREQ_32bit_200002EC = 426075000;
     PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;  
     PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
     PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;	
-    ADF7030Init();     //射频初始化
+    ADF7030Init();     //?????
     
     UART1_INIT();      // UART1 for PC Software
-    _EI();             // 允许中断
+    _EI();             // ????
     ClearWDT();        // Service the WDT
     lcd_init();
     RF_test_mode();
@@ -84,8 +84,8 @@ void main(void)
     Power_ON_sendVer();
 
 	FLAG_Freq_Select_429or426MHz=Freq_Select_429or426MHz;
-	if(FLAG_Freq_Select_429or426MHz==0)FLAG_ID_Login_FromUART=1;
-	else FLAG_ID_Login_FromUART=0;
+	if(FLAG_Freq_Select_429or426MHz==0)Channels=1;//FLAG_ID_Login_FromUART=1;
+	else Channels=11;//FLAG_ID_Login_FromUART=0;
     while (1)
     {
         if(FLAG_Freq_Select_429or426MHz!=Freq_Select_429or426MHz)while(1);
@@ -98,7 +98,7 @@ void main(void)
         if(FLAG_APP_RX==1)
         {
     		  Freq_Scanning();
-			  	SCAN_RECEIVE_PACKET(); //扫描接收数据
+			  	SCAN_RECEIVE_PACKET(); //??????
         }
         TranmissionACK();
         wireless_Receive_SendUart();

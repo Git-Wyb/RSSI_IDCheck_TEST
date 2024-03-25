@@ -408,6 +408,7 @@ void lcd_desplay(void)
 	  }
 	  else if(Radio_Date_Type==2)
 	  {
+      DATA_Packet_Contro_buf=0;
 	     display_map_xy(0*6,cc,5,8,char_Small+(hex_asc(lcd_Struct_DATA_Packet_Contro[0]/16)-0x20)*5);
 		 display_map_xy(1*6,cc,5,8,char_Small+(hex_asc(lcd_Struct_DATA_Packet_Contro[0]%16)-0x20)*5);
 		 for (i = 0; i < lcd_length_Struct_DATA_Packet_Contro; ++i)

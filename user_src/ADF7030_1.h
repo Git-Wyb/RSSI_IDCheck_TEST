@@ -148,6 +148,7 @@ extern u8 Radio_Date_Type;
 void DELAY_30U(void);
 
 void ADF7030Init(void);
+void ADF7030Init_NoReset(void);
 
 void ADF7030_FIXED_DATA(void);
 void ADF7030_CHANGE_STATE(u8 x_state);

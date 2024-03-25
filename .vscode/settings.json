@@ -3,7 +3,6 @@
     "editor.tabSize": 4,
     "editor.detectIndentation": true,
     "files.encoding": "utf8",
-    "editor.renderIndentGuides": true,
     "C_Cpp.clang_format_formatOnSave": true,
     "git.confirmSync": false,
     "files.insertFinalNewline": true,
@@ -16,4 +15,5 @@
         "adf7030_1.h": "c",
         "pin_define.h": "c"
     },
+    "editor.guides.indentation": true,
 }
