@@ -375,7 +375,7 @@ void lcd_desplay(void)
 	  rssi=-rssi;
 	  if(rssi>=127)rssi=127;
 	  
-      LCD_display_argos_rssi(rssi*10);
+      LCD_display_argos_rssi(rssi*10,0);
       lcd_rssi= rssi;
 
 	  if(lcd_rssi>=120)lcd_rssi=120;
@@ -427,6 +427,10 @@ void lcd_desplay(void)
 			 {
 			    display_map_xy(18+i*2+i*2*6,cc,5,8,char_Small+(hex_asc(lcd_Struct_DATA_Packet_Contro[i+1]/16)-0x20)*5);
 		        display_map_xy(18+i*2+(i*2+1)*6,cc,5,8,char_Small+(hex_asc(lcd_Struct_DATA_Packet_Contro[i+1]%16)-0x20)*5);
+          if ((lcd_length_Struct_DATA_Packet_Contro == 3) && (i == 2))
+          {
+            LCD_display_argos_rssi(lcd_Struct_DATA_Packet_Contro[3] * 10, cc);
+          }            
 			 }
 	  }
        switch (DATA_Packet_Contro_buf){				
@@ -479,7 +483,7 @@ void lcd_desplay(void)
 
 
 //***********************************************************************************
-void LCD_display_argos_rssi(unsigned int m){
+void LCD_display_argos_rssi(unsigned int m, unsigned char y){
   unsigned char i,x;  
   unsigned char char_rssi[3]="dBm";
   unsigned char char_rssi1[4]="RS";
@@ -490,16 +494,16 @@ void LCD_display_argos_rssi(unsigned int m){
       m=m/10;
       if(i==1){
         if(x==0){
-          display_map_xy(86,0,5,8,char_Small);
-          display_map_xy(86+i*6,0,5,8,char_Small+0x0d*5);           
+          display_map_xy(86,y,5,8,char_Small);
+          display_map_xy(86+i*6,y,5,8,char_Small+0x0d*5);           
         }   
         else {
-          display_map_xy(86,0,5,8,char_Small+0x0d*5);
-          display_map_xy(86+i*6,0,5,8,char_Small+(0x10+x)*5);          
+          display_map_xy(86,y,5,8,char_Small+0x0d*5);
+          display_map_xy(86+i*6,y,5,8,char_Small+(0x10+x)*5);          
         }
       }
       else if(i==4){if(x>=6)m=m+1;}
-      else  display_map_xy(86+i*6,0,5,8,char_Small+(0x10+x)*5);
+      else  display_map_xy(86+i*6,y,5,8,char_Small+(0x10+x)*5);
     }
     
 /*
@@ -508,11 +512,11 @@ void LCD_display_argos_rssi(unsigned int m){
     display_map_xy(86+24+2*6,0,5,8,char_Small+0x4d*5);
 */
 
-	for(i=0;i<2;i++)
-    display_map_xy(0+i*6,0,5,8,char_Small+(char_rssi1[i]-0x20)*5);     //RSSI
+	// for(i=0;i<2;i++)
+  //   display_map_xy(0+i*6,0,5,8,char_Small+(char_rssi1[i]-0x20)*5);     //RSSI
 
 	for(i=0;i<3;i++)
-    display_map_xy(86+24+i*6,0,5,8,char_Small+(char_rssi[i]-0x20)*5);     //dBm
+    display_map_xy(86+24+i*6,y,5,8,char_Small+(char_rssi[i]-0x20)*5);     //dBm
 	
     lcd_rssi=m;
   }

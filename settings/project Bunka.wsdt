@@ -12,7 +12,11 @@
           
           
           
+<<<<<<< HEAD
         <Column0>207</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+=======
+        <Column0>308</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+>>>>>>> SCX1702_LCD_for_RSSI
       </Workspace>
       <Build>
         
@@ -52,14 +56,22 @@
       
       
       
+<<<<<<< HEAD
     <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>42</YPos2><SelStart2>2146</SelStart2><SelEnd2>2146</SelEnd2></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+=======
+    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+>>>>>>> SCX1702_LCD_for_RSSI
     <Positions>
       
       
       
       
       
+<<<<<<< HEAD
     <Top><Row0><Sizes><Toolbar-04BFA3C8><key>iaridepm.enu1</key></Toolbar-04BFA3C8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>471</Bottom><Right>281</Right><x>-2</x><y>-2</y><xscreen>945</xscreen><yscreen>558</yscreen><sizeHorzCX>718631</sizeHorzCX><sizeHorzCY>696629</sizeHorzCY><sizeVertCX>215209</sizeVertCX><sizeVertCY>590512</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>285</Bottom><Right>1317</Right><x>-2</x><y>-2</y><xscreen>1319</xscreen><yscreen>287</yscreen><sizeHorzCX>1003042</sizeHorzCX><sizeHorzCY>358302</sizeHorzCY><sizeVertCX>718631</sizeVertCX><sizeVertCY>696629</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+=======
+    <Top><Row0><Sizes><Toolbar-0262EF98><key>iaridepm.enu1</key></Toolbar-0262EF98></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>393</Bottom><Right>382</Right><x>-2</x><y>-2</y><xscreen>725</xscreen><yscreen>474</yscreen><sizeHorzCX>718533</sizeHorzCX><sizeHorzCY>697059</sizeHorzCY><sizeVertCX>380575</sizeVertCX><sizeVertCY>580882</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>242</Bottom><Right>1011</Right><x>-2</x><y>-2</y><xscreen>1013</xscreen><yscreen>244</yscreen><sizeHorzCX>1003964</sizeHorzCX><sizeHorzCY>358824</sizeHorzCY><sizeVertCX>718533</sizeVertCX><sizeVertCY>697059</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+>>>>>>> SCX1702_LCD_for_RSSI
   </Desktop>
 </Workspace>
 

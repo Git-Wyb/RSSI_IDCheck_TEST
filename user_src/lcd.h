@@ -16,8 +16,7 @@ void delay(UINT16 i);
 void display_map_xy(unsigned char x,unsigned char y,unsigned char l,unsigned char h,const unsigned char *p);
 void lcd_clear(unsigned char data1) ;
 void lcd_desplay(void);
-void LCD_display_argos_rssi(unsigned int m);
-
+void LCD_display_argos_rssi(unsigned int m, unsigned char y);
 
 extern const unsigned char char_Large_L11_H24[];
 extern const unsigned char char_ID[];

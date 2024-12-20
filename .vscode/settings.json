@@ -7,9 +7,6 @@
     "git.confirmSync": false,
     "files.insertFinalNewline": true,
     "editor.wrappingIndent": "indent",
-    "editor.formatOnPaste": true,
-    "editor.formatOnType": true,
-    "editor.formatOnSave": true,
     "files.autoGuessEncoding": true,
     "files.associations": {
         "adf7030_1.h": "c",
