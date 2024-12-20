@@ -572,8 +572,8 @@ if (TIMER18ms == 0)
 		}
 
 		ADF7030_Change_Channel();
-		ADF7030Init_NoReset();
-        //ADF7030Init();	   //射频初始化	
+		//ADF7030Init_NoReset();
+        ADF7030Init();	   //射频初始化	
 
 		if(Radio_Date_Type==1)
 		  TIMER18ms = 18;

@@ -400,6 +400,18 @@ void lcd_desplay(void)
          display_map_xy(1+(7-i)*9,16,7,16,char_Medium+data*14);
       }
 
+      num=PROFILE_CH_FREQ_32bit_200002EC/1000;      
+      for(i=0;i<6;i++)
+      {
+         data=num%10;
+         num=num/10;
+         if(i<3)
+            display_map_xy(80+(7-i)*6,24,5,8,char_Small+(hex_asc(data)-0x20)*5);
+         else 
+            display_map_xy(80+(6-i)*6,24,5,8,char_Small+(hex_asc(data)-0x20)*5);
+      }
+      display_map_xy(80+4*6,24,5,8,char_Small+('.'-0x20)*5);
+
       lcd_clear_line8(1);
 	  if(Radio_Date_Type==1)
 	  {

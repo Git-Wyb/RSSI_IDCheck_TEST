@@ -1,6 +1,6 @@
 [DebugChecksum]
 <<<<<<< HEAD
-Checksum=-1457629986
+Checksum=-1933576263
 =======
 Checksum=773928336
 >>>>>>> f03119bb9d9418453f7da9e2e3549a267f3e0d0b
@@ -118,7 +118,8 @@ A11=_ "F:\Source Code\bunka-s\Bunka STM8L151G6 RX_ADF7030 Source CRX1831DC\Windo
 A12=_ "F:\Source Code\bunka-s\Bunka STM8L151G6 RX_ADF7030 Source CRX1831DC\Windowshade7030 Ver3.2.0\user_src\main.c" ""
 A13=_ "F:\Source Code\bunka-s\Bunka STM8L151G6 RX_ADF7030 Source CRX1831DC\Windowshade7030 Ver3.2.0\user_src\uart.c" ""
 A14=_ "F:\Source Code\bunka-s\Bunka STM8L151G6 RX_ADF7030 Source CRX1831DC\Windowshade7030 Ver3.5.1\user_src\uart.c" ""
-Count=15
+A15=_ "F:\Source Code\bunka-s\SCX1701\SCX1701 for ADF7030 scan Verx.xx(new)\user_src\main.c" ""
+Count=16
 SuppressDialog=1
 [DebuggerSettings]
 DisableInterruptsWhenStepping=0

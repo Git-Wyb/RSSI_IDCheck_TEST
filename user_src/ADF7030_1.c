@@ -1287,7 +1287,7 @@ void APP_TX_PACKET(void)
   if((FLAG_APP_TX_fromUART==1)&&(Flag_FREQ_Scan==0))
   {
     if(
-	  ((Uart_Type==1)&&((PROFILE_CH_FREQ_32bit_200002EC == 429175000)||(PROFILE_CH_FREQ_32bit_200002EC == 429200000)))||
+	  //((Uart_Type==1)&&((PROFILE_CH_FREQ_32bit_200002EC == 429175000)||(PROFILE_CH_FREQ_32bit_200002EC == 429200000)))||
 	  (((Uart_Type==1)||(FLAG_KEY_SW2_open==1)||(FLAG_KEY_SW3_stop==1)||(FLAG_KEY_SW4_close==1))&&(FLAG_Freq_Select_429or426MHz==0)&&(PROFILE_CH_FREQ_32bit_200002EC == 426075000))||
 	  (((Uart_Type==2)||(FLAG_KEY_SW2_open==1)||(FLAG_KEY_SW3_stop==1)||(FLAG_KEY_SW4_close==1))&&(FLAG_Freq_Select_429or426MHz==1)&&((PROFILE_CH_FREQ_32bit_200002EC == PROFILE_CH1_FREQ_32bit_429HighSpeed)||(PROFILE_CH_FREQ_32bit_200002EC == PROFILE_CH2_FREQ_32bit_429HighSpeed)))
 	  )
@@ -1299,7 +1299,7 @@ void APP_TX_PACKET(void)
 					  {
 					  	FLAG_KEY_SW2_open=2;
 						Uart_Type=2;
-						TX_ID_data=13666666;
+						TX_ID_data=13475049;
 						Uart_Struct_DATA_Packet_Contro.Fno_Type.UN.type=1;
 						Uart_Struct_DATA_Packet_Contro.Fno_Type.UN.fno=0;
 						Uart_Struct_DATA_Packet_Contro.data[0].uc[0]=0x08;
@@ -1308,7 +1308,7 @@ void APP_TX_PACKET(void)
 					  {
 					  	FLAG_KEY_SW3_stop=2;
 						Uart_Type=2;
-						TX_ID_data=13666666;
+						TX_ID_data=13475049;
 						Uart_Struct_DATA_Packet_Contro.Fno_Type.UN.type=1;
 						Uart_Struct_DATA_Packet_Contro.Fno_Type.UN.fno=0;
 						Uart_Struct_DATA_Packet_Contro.data[0].uc[0]=0x04;
@@ -1317,7 +1317,7 @@ void APP_TX_PACKET(void)
 					  {
 					  	FLAG_KEY_SW4_close=2;
 						Uart_Type=2;
-						TX_ID_data=13666666;
+						TX_ID_data=13475049;
 						Uart_Struct_DATA_Packet_Contro.Fno_Type.UN.type=1;
 						Uart_Struct_DATA_Packet_Contro.Fno_Type.UN.fno=0;
 						Uart_Struct_DATA_Packet_Contro.data[0].uc[0]=0x02;
@@ -1329,21 +1329,21 @@ void APP_TX_PACKET(void)
 					  {
 					  	FLAG_KEY_SW2_open=2;
 						Uart_Type=1;
-						TX_ID_data=13666666;
+						TX_ID_data=13475049;
 						TX_Control_code_TYPE01=0x08;
 					  }
 					  else if(FLAG_KEY_SW3_stop==1)
 					  {
 					  	FLAG_KEY_SW3_stop=2;
 						Uart_Type=1;
-						TX_ID_data=13666666;
+						TX_ID_data=13475049;
 						TX_Control_code_TYPE01=0x04;
 					  }
 					  else if(FLAG_KEY_SW4_close==1)
 					  {
 					  	FLAG_KEY_SW4_close=2;
 						Uart_Type=1;
-						TX_ID_data=13666666;
+						TX_ID_data=13475049;
 						TX_Control_code_TYPE01=0x02;
 					  }
 			  }
