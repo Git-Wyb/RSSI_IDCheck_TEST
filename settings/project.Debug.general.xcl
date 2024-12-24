@@ -2,11 +2,7 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\bin\stm8stlink.dll" 
 
-<<<<<<< HEAD
 "D:\Work\Source Code\bunka-s\SCX1701\SCX1701 for ADF7030 scan Verx.xx(new)\Debug\Exe\project.out" 
-=======
-"F:\Source Code\bunka-s\SCX1701\SCX1701 for ADF7030 scan Verx.xx(new)\Debug\Exe\project.out" 
->>>>>>> SCX1702_LCD_for_RSSI
 
 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\bin\stm8bat.dll" 
 

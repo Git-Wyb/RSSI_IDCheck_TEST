@@ -1288,7 +1288,7 @@ void APP_TX_PACKET(void)
   {
     if(
 	  //((Uart_Type==1)&&((PROFILE_CH_FREQ_32bit_200002EC == 429175000)||(PROFILE_CH_FREQ_32bit_200002EC == 429200000)))||
-	  (((Uart_Type==1)||(FLAG_KEY_SW2_open==1)||(FLAG_KEY_SW3_stop==1)||(FLAG_KEY_SW4_close==1))&&(FLAG_Freq_Select_429or426MHz==0)&&(PROFILE_CH_FREQ_32bit_200002EC == 426075000))||
+	  (((Uart_Type==1)||(FLAG_KEY_SW2_open==1)||(FLAG_KEY_SW3_stop==1)||(FLAG_KEY_SW4_close==1))&&(FLAG_Freq_Select_429or426MHz==0)&&((PROFILE_CH_FREQ_32bit_200002EC == 429175000)||(PROFILE_CH_FREQ_32bit_200002EC == 429200000)))||
 	  (((Uart_Type==2)||(FLAG_KEY_SW2_open==1)||(FLAG_KEY_SW3_stop==1)||(FLAG_KEY_SW4_close==1))&&(FLAG_Freq_Select_429or426MHz==1)&&((PROFILE_CH_FREQ_32bit_200002EC == PROFILE_CH1_FREQ_32bit_429HighSpeed)||(PROFILE_CH_FREQ_32bit_200002EC == PROFILE_CH2_FREQ_32bit_429HighSpeed)))
 	  )
     {
