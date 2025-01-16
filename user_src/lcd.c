@@ -429,7 +429,7 @@ void lcd_desplay(void)
 		        display_map_xy(18+i*2+(i*2+1)*6,cc,5,8,char_Small+(hex_asc(lcd_Struct_DATA_Packet_Contro[i+1]%16)-0x20)*5);
           if ((lcd_length_Struct_DATA_Packet_Contro == 3) && (i == 2))
           {
-            LCD_display_argos_rssi(lcd_Struct_DATA_Packet_Contro[3] * 10, cc);
+            LCD_display_argos_rssi((lcd_Struct_DATA_Packet_Contro[3]&0x7F) * 10, cc);
           }            
 			 }
 	  }
