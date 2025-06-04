@@ -69,7 +69,8 @@ extern volatile uFLAG FLAG2;
 #define FLAG_APP_TX_fromUART FLAG2.BIT.Bit1
 #define FLAG_APP_RXstart FLAG2.BIT.Bit2
 #define FLAG_ID_Login_FromUART FLAG2.BIT.Bit3
-#define FLAG_Freq_Select_429or426MHz FLAG2.BIT.Bit4     
+#define FLAG_Freq_Select_429or426MHz FLAG2.BIT.Bit4
+#define flag_mode FLAG2.BIT.Bit5
 //************************************************
 
 
@@ -191,5 +192,12 @@ extern Wireless_Body Uart_Struct_DATA_Packet_Contro;
 
 extern u8 TIME_TX_RSSI_Scan;
 
+extern u8 flag_reg_state;
+extern u16 time_led;
+#define ENTER_ADD_STATE 0xB0
+#define EXIT_STATE  0xB1
+#define REGISTER_STATE 0xB2
+#define ENTER_ERASE_STATE 0xB3
+#define PROFILE_429HighSpeed_Register   429300000//429350000
 
 #endif

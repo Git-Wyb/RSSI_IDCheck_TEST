@@ -107,7 +107,7 @@ void ID_Decode_IDCheck(void)
 				TIMER1s = 1000;
 			}
             else if ((FLAG_IDCheck_OK == 1) || (DATA_Packet_ID == 0xFFFFFE))
-            //else 
+            //else
             {
                 FLAG_IDCheck_OK = 0;
                 if (DATA_Packet_ID == 0xFFFFFE)
@@ -144,9 +144,9 @@ void ID_Decode_IDCheck(void)
                 }
                 else
                 {
-                    flag_ID_Receiver_sendUART=1;					
+                    flag_ID_Receiver_sendUART=1;
                     if(Radio_Date_Type==1)PAYLOAD_SIZE = RX_PayLoadSizeNOLogin;
-					
+
 /*
                     if ((DATA_Packet_Control == 0x40) && (Manual_override_TIMER == 0))
                     {
@@ -170,7 +170,7 @@ void ID_Decode_IDCheck(void)
                             Manual_override_TIMER = 24480; //4分30秒自动无效
                         TIMER1s = 1000;
 //                    }
-					
+
                     if(Radio_Date_Type==1)TIMER300ms = 700;
 					else TIMER300ms = 500;
                     //Receiver_LED_RX=1;
@@ -236,7 +236,7 @@ void Signal_DATA_Decode(UINT8 NUM_Type)
 				Struct_DATA_Packet_Contro_buf.data[i].ui=data_NRZ[i+2];
 	    }
 	    else
-	        FLAG_Signal_DATA_OK = 0;	
+	        FLAG_Signal_DATA_OK = 0;
 	}
 }
 
@@ -266,7 +266,7 @@ void eeprom_IDcheck(void)
 	if(Radio_Date_Type==1)DATA_Packet_Control = DATA_Packet_Contro_buf;
 	else if(Radio_Date_Type==2)Struct_DATA_Packet_Contro=Struct_DATA_Packet_Contro_buf;
 
-	
+
  // DATA_Packet_Control = DATA_Packet_Contro_buf;
 }
 
@@ -347,7 +347,7 @@ void ID_Decode_OUT(void)
     Control_i = DATA_Packet_Control & 0xFF;
     if (TIMER1s)
     {
-        Receiver_LED_OUT = 1;
+        if(PROFILE_CH_FREQ_32bit_200002EC != PROFILE_429HighSpeed_Register) Receiver_LED_OUT = 1;
         switch (Control_i)
         {
         case 0x14: //stop+login
@@ -530,7 +530,7 @@ void ID_Decode_OUT(void)
         else if (TIME_Receiver_LED_OUT > 0)
             Receiver_LED_OUT = 1;
         else
-            Receiver_LED_OUT = 0;
+            if(PROFILE_CH_FREQ_32bit_200002EC != PROFILE_429HighSpeed_Register) Receiver_LED_OUT = 0;
         Receiver_OUT_OPEN = FG_NOT_allow_out;
         Receiver_OUT_VENT = FG_NOT_allow_out;
         if (FG_auto_open_time == 1)
@@ -551,7 +551,7 @@ void ID_Decode_OUT(void)
 
 void Freq_Scanning(void)
 {
-	  
+
 if (TIMER18ms == 0)
 	{
 		if (Flag_FREQ_Scan == 0)
@@ -573,12 +573,12 @@ if (TIMER18ms == 0)
 
 		ADF7030_Change_Channel();
 		//ADF7030Init_NoReset();
-        ADF7030Init();	   //射频初始化	
+        ADF7030Init();	   //射频初始化
 
 		if(Radio_Date_Type==1)
 		  TIMER18ms = 18;
 		else if(Radio_Date_Type==2)
-		  TIMER18ms = 28; 
+		  TIMER18ms = 28;
 
 		Flag_FREQ_Scan = 0;
 	}
