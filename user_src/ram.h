@@ -194,6 +194,7 @@ extern u8 TIME_TX_RSSI_Scan;
 
 extern u8 flag_reg_state;
 extern u16 time_led;
+extern u8 set_check_rssi;
 #define ENTER_ADD_STATE 0xB0
 #define EXIT_STATE  0xB1
 #define REGISTER_STATE 0xB2

@@ -136,7 +136,7 @@ const u32 PROFILE_CH2_FREQ_32bit_429HighSpeed=429550000;//429550000;//429237500;
 u8 Channels=1;
 u8 flag_reg_state = 0;
 u16 time_led = 0;
-
+u8 set_check_rssi = 4;
 
 
 u32 TX_ID_data=0;

@@ -1204,6 +1204,7 @@ void ADF7030_Change_Channel(void)
 				  Radio_Date_Type=1;
 				  Channels=11;
 				  ADF7030Cfg_pointer=ADF7030Cfg;
+                  break;
 
               case 15:
 				   PROFILE_CH_FREQ_32bit_200002EC = PROFILE_429HighSpeed_Register;
@@ -1213,9 +1214,8 @@ void ADF7030_Change_Channel(void)
 					Radio_Date_Type=2;
 					Channels=15;
 					ADF7030Cfg_pointer=ADF7030Cfg_4dot8k;
-				   break;
+                    break;
 
-				   break;
 			  default:
 				   break;
 

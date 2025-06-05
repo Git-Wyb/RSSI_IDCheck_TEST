@@ -92,6 +92,7 @@ void main(void)
         else Channels=11;//FLAG_ID_Login_FromUART=0;
     }
     else Channels = 15;
+    if(flag_mode == 0)display_set_rssi((set_check_rssi * 100),120);
     while (1)
     {
         if(flag_mode == 1)if(FLAG_Freq_Select_429or426MHz!=Freq_Select_429or426MHz)while(1);

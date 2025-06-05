@@ -326,7 +326,7 @@ void lcd_desplay(void)
      else if(KEY_SW4_close==1)FLAG_KEY_SW4_close=0;
 
   	 if((KEY_SW3_stop==0)&&(FLAG_KEY_SW3_stop==0))
- 	   {FLAG_KEY_SW3_stop=1;Display_key_SW3=0xff;}
+     {FLAG_KEY_SW3_stop=1;Display_key_SW3=0xff;}
      else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;
 
   	 if((KEY_SW2_open==0)&&(FLAG_KEY_SW2_open==0))
@@ -334,11 +334,27 @@ void lcd_desplay(void)
      else if(KEY_SW2_open==1)FLAG_KEY_SW2_open=0;
 #else
 	if((KEY_SW4_close==0)&&(FLAG_KEY_SW4_close==0))
-	  {FLAG_KEY_SW4_close=1;FLAG_APP_TX_fromUART=1;}
+	  {
+          FLAG_KEY_SW4_close=1;FLAG_APP_TX_fromUART=1;
+          if(flag_mode == 0)
+          {
+              set_check_rssi++;
+              if(set_check_rssi > 12)  set_check_rssi = 1;
+              display_set_rssi(set_check_rssi * 100,120);
+          }
+      }
 	else if(KEY_SW4_close==1)FLAG_KEY_SW4_close=0;
 
 	if((KEY_SW3_stop==0)&&(FLAG_KEY_SW3_stop==0))
-	  {FLAG_KEY_SW3_stop=1;FLAG_APP_TX_fromUART=1;}
+	  {
+            FLAG_KEY_SW3_stop=1;FLAG_APP_TX_fromUART=1;
+            if(flag_mode == 0)
+            {
+                set_check_rssi--;
+                if(set_check_rssi <= 0)  set_check_rssi = 12;
+                display_set_rssi(set_check_rssi * 100,120);
+            }
+      }
 	else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;
 
 	if((KEY_SW2_open==0)&&(FLAG_KEY_SW2_open==0))
@@ -353,9 +369,9 @@ void lcd_desplay(void)
     {
       Display_key_SW3=Count_key_SW3;
       Flag_Display_key_SW3=1;
-      lcd_clear(1);
       if(flag_mode == 1)
       {
+          lcd_clear(1);
       //display_map_xy(8,16,110,24,char_ID);
       //*************************DISPLAY  "¹«Ë¾"
       if(Display_key_SW3==0){
@@ -404,7 +420,7 @@ void lcd_desplay(void)
 	{
 	  Scan_step=0;
 	  time_LCD_Display=200;   //2s
-      if(Flag_Display_key_SW3==1){Flag_Display_key_SW3=0;lcd_clear(1);}
+      if(flag_mode == 1) {if(Flag_Display_key_SW3==1){Flag_Display_key_SW3=0;lcd_clear(1);}}
       //lcd_clear_1and2_line(1);
       lcd_clear_line1(1);
 
@@ -429,7 +445,7 @@ void lcd_desplay(void)
       //delay(3000);
         if(PROFILE_CH_FREQ_32bit_200002EC == PROFILE_429HighSpeed_Register)
         {
-            if(rssi <= 40) //-40dbm   5m
+            if(rssi <= (set_check_rssi * 10)) //-40dbm   5m
             {
                 if(lcd_Struct_DATA_Packet_Contro[1] == 0xAA)
                 {
@@ -442,6 +458,7 @@ void lcd_desplay(void)
                 if(flag_reg_state == REGISTER_STATE)
                 {
                     lcd_clear_2and8_line(1);
+                    display_set_rssi(set_check_rssi * 100,120);
                     display_map_xy(18,8,5,8,char_Small+44*5);//L
                     display_map_xy(23+1,8,5,8,char_Small+79*5);//o
                     display_map_xy(28+2,8,5,8,char_Small+71*5);//g
@@ -1179,6 +1196,7 @@ const unsigned char char_rssi[]={
 void display_reg(u8 ch)
 {     //register  Login
     lcd_clear_2and8_line(1);//lcd_clear(1);
+    display_set_rssi(set_check_rssi * 100,120);
     switch(ch)
     {
         case 0:
@@ -1234,5 +1252,42 @@ void display_reg(u8 ch)
             display_map_xy(65+18,24,5,8,char_Small+78*5);//n
             break;
     }
+}
+
+
+void display_set_rssi(u16 rs,u8 y)
+{
+    unsigned char i,x;
+    unsigned char char_rssi[3]="dBm";
+
+    for(i=4;i>=1;i--){
+      x = rs%10;
+      rs = rs/10;
+      if(i == 1){
+        if(x == 0){
+          display_map_xy(60,y,5,8,char_Small);
+          display_map_xy(60+i*6,y,5,8,char_Small+0x0d*5);
+        }
+        else {
+          display_map_xy(60,y,5,8,char_Small+0x0d*5);
+          display_map_xy(60+i*6,y,5,8,char_Small+(0x10+x)*5);
+        }
+      }
+      else if(i==4){if(x>=6)  rs = rs + 1;}
+      else  display_map_xy(60+i*6,y,5,8,char_Small+(0x10+x)*5);
+    }
+
+    display_map_xy(10,y,5,8,char_Small+51*5);//S
+    display_map_xy(15+1,y,5,8,char_Small+69*5);//e
+    display_map_xy(20+2,y,5,8,char_Small+84*5);//t
+    display_map_xy(25+4,y,5,8,char_Small+0*5);//¿Õ¸ñ
+    display_map_xy(30+3,y,5,8,char_Small+50*5);//R
+    display_map_xy(35+4,y,5,8,char_Small+51*5);//S
+    display_map_xy(40+4,y,5,8,char_Small+51*5);//S
+    display_map_xy(45+5,y,5,8,char_Small+41*5);//I
+    display_map_xy(50+7,y,5,8,char_Small+26*5);//:
+
+    for(i=0;i<3;i++)
+    display_map_xy(62+24+i*6,y,5,8,char_Small+(char_rssi[i]-0x20)*5);     //dBm
 }
 

@@ -44,7 +44,7 @@ extern u8 FLAG_KEY_SW3_stop;
 extern u8 FLAG_KEY_SW2_open;
 
 void display_reg(u8 ch);
-
+void display_set_rssi(u16 rs,u8 y);
 
 
 
