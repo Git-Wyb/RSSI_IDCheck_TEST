@@ -361,6 +361,8 @@ void RF_BRE_Check(void)
     if (X_ERRTimer == 0)
         Receiver_LED_RX = 0;
 }
+
+void display_test_mode(u8 mode);
 void RF_test_mode(void)
 {
    /* UINT8 Boot_i;
@@ -376,24 +378,37 @@ void RF_test_mode(void)
         Receiver_LED_OUT = !Receiver_LED_OUT;
     }*/
     Receiver_LED_OUT = 0;
-
-    while (Receiver_test == 0)
+    flag_testmode = 0;
+    if(Receiver_test == 0)
+    {
+        flag_testmode = 1;
+        Tx_Rx_mode = 4;
+        display_test_mode(0xff);
+    }
+    while (flag_testmode)
     {
         ClearWDT();   // Service the WDT
-        if (TP4 == 0) //test ADF7030 TX
+        if((KEY_SW4_close==0)&&(FLAG_KEY_SW4_close==0))
+ 	   {
+           FLAG_KEY_SW4_close=1; Tx_Rx_mode = 0;
+           display_test_mode(Tx_Rx_mode);
+       } //test ADF7030 TX
+        else if(KEY_SW4_close==1)FLAG_KEY_SW4_close=0;
+
+        if((KEY_SW3_stop==0)&&(FLAG_KEY_SW3_stop==0))
         {
-            if (TP3 == 0)
-                Tx_Rx_mode = 0;
-            else
-                Tx_Rx_mode = 1;
+            FLAG_KEY_SW3_stop=1;Tx_Rx_mode = 1;
+            display_test_mode(Tx_Rx_mode);
         }
-        else //test ADF7030 RX
+        else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;
+
+        if((KEY_SW2_open==0)&&(FLAG_KEY_SW2_open==0))
         {
-            if (TP3 == 0)
-                Tx_Rx_mode = 2;
-            else
-                Tx_Rx_mode = 3;
+            FLAG_KEY_SW2_open=1;Tx_Rx_mode = 3;
+            display_test_mode(Tx_Rx_mode);
         }
+        else if(KEY_SW2_open==1)FLAG_KEY_SW2_open=0;
+
         if ((Tx_Rx_mode == 0) || (Tx_Rx_mode == 1))
         {
             CG2214M6_USE_T;
@@ -443,8 +458,8 @@ void RF_test_mode(void)
             FG_test_tx_1010 = 0;
             if (FG_test_tx_off == 0)
             {
-		            PROFILE_CH_FREQ_32bit_200002EC = 426075000;
-                PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;            
+		            PROFILE_CH_FREQ_32bit_200002EC = 429300000;
+                PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
                 ADF7030_RECEIVING_FROM_POWEROFF();
                 FG_test_tx_off = 1;
             }

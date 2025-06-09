@@ -71,6 +71,7 @@ extern volatile uFLAG FLAG2;
 #define FLAG_ID_Login_FromUART FLAG2.BIT.Bit3
 #define FLAG_Freq_Select_429or426MHz FLAG2.BIT.Bit4
 #define flag_mode FLAG2.BIT.Bit5
+#define flag_testmode FLAG2.BIT.Bit6
 //************************************************
 
 

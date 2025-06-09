@@ -74,7 +74,7 @@ void main(void)
     _EI();             // ????
     ClearWDT();        // Service the WDT
     lcd_init();
-    RF_test_mode();
+
 	  FLAG_ID_Login_FromUART=0;
     FLAG_APP_RX = 1;
     FLAG_APP_TX_fromUART=0;
@@ -91,8 +91,12 @@ void main(void)
         if(FLAG_Freq_Select_429or426MHz==0)Channels=1;//FLAG_ID_Login_FromUART=1;
         else Channels=11;//FLAG_ID_Login_FromUART=0;
     }
-    else Channels = 15;
-    if(flag_mode == 0)display_set_rssi((set_check_rssi * 100),120);
+    else
+    {
+        RF_test_mode();
+        Channels = 15;
+        display_set_rssi((set_check_rssi * 100),120);
+    }
     while (1)
     {
         if(flag_mode == 1)if(FLAG_Freq_Select_429or426MHz!=Freq_Select_429or426MHz)while(1);

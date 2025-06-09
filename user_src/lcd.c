@@ -822,16 +822,16 @@ const unsigned char char_Small[] ={
   0x00,0xC0,0xC0,0x00,0x00,       //2E       .         14
   0x40,0x20,0x10,0x08,0x04,       //2F       /
 
-  0x7C,0xA2,0x92,0x8A,0x7C,       //30        0
-  0x00,0x84,0xFE,0x80,0x00,       //31        1
-  0x84,0xC2,0xA2,0x92,0x8C,       //32        2
-  0x42,0x82,0x8A,0x96,0x62,       //33        3
-  0x30,0x28,0x24,0xFE,0x20,       //34        4
-  0x4E,0x8A,0x8A,0x8A,0x72,       //35        5
-  0x78,0x94,0x92,0x92,0x60,       //36        6
-  0x06,0x02,0xE2,0x12,0x0E,       //37        7
-  0x6C,0x92,0x92,0x92,0x6C,       //38        8
-  0x0C,0x92,0x92,0x52,0x3C,       //39        9
+  0x7C,0xA2,0x92,0x8A,0x7C,       //30        0   16
+  0x00,0x84,0xFE,0x80,0x00,       //31        1   17
+  0x84,0xC2,0xA2,0x92,0x8C,       //32        2   18
+  0x42,0x82,0x8A,0x96,0x62,       //33        3   19
+  0x30,0x28,0x24,0xFE,0x20,       //34        4   20
+  0x4E,0x8A,0x8A,0x8A,0x72,       //35        5   21
+  0x78,0x94,0x92,0x92,0x60,       //36        6   22
+  0x06,0x02,0xE2,0x12,0x0E,       //37        7   23
+  0x6C,0x92,0x92,0x92,0x6C,       //38        8   24
+  0x0C,0x92,0x92,0x52,0x3C,       //39        9   25
 
   0x00,0x6C,0x6C,0x00,0x00,       //3A        :   26
   0x00,0xAC,0x6C,0x00,0x00,       //3B        ;
@@ -859,14 +859,14 @@ const unsigned char char_Small[] ={
   0xFE,0x12,0x12,0x12,0x0C,       //50        P
   0x7C,0x82,0xA2,0x42,0xBC,       //51        Q
   0xFE,0x12,0x32,0x52,0x8C,       //52        R    50
-  0x4C,0x92,0x92,0x92,0x64,       //53        S
+  0x4C,0x92,0x92,0x92,0x64,       //53        S    51
   0x02,0x02,0xFE,0x02,0x02,       //54        T    52
   0x7E,0x80,0x80,0x80,0x7E,       //55        U
   0x3E,0x40,0x80,0x40,0x3E,       //56        V
   0x7E,0x80,0x70,0x80,0x7E,       //57        W    55
   0xC6,0x28,0x10,0x28,0xC6,       //58        X    56
-  0x0E,0x10,0xE0,0x10,0x0E,       //59        Y
-  0xC2,0xA2,0x92,0x8A,0x86,       //5A        Z
+  0x0E,0x10,0xE0,0x10,0x0E,       //59        Y    57
+  0xC2,0xA2,0x92,0x8A,0x86,       //5A        Z    58
 
   0x00,0xFE,0x82,0x82,0x00,       //5B        [
   0x04,0x08,0x10,0x20,0x40,       //5C      符号反斜杠    60
@@ -878,7 +878,7 @@ const unsigned char char_Small[] ={
   0x40,0xA8,0xA8,0xA8,0xF0,       //61       a     65
   0xFE,0x90,0x88,0x88,0x70,       //62       b
   0x70,0x88,0x88,0x88,0x50,       //63       c
-  0x70,0x88,0x88,0x90,0xFE,       //64       d
+  0x70,0x88,0x88,0x90,0xFE,       //64       d      68
   0x70,0xA8,0xA8,0xA8,0x30,       //65       e      69
   0x10,0xFC,0x12,0x02,0x04,       //66       f      70
   0x10,0xA8,0xA8,0xA8,0x78,       //67       g      71
@@ -886,7 +886,7 @@ const unsigned char char_Small[] ={
   0x00,0x90,0xFA,0x80,0x00,       //69       i      73
   0x40,0x80,0x88,0x7A,0x00,       //6A       j       74
   0xFE,0x20,0x50,0x88,0x00,       //6B       k       75
-  0x00,0x82,0xFE,0x80,0x00,       //6C       l
+  0x00,0x82,0xFE,0x80,0x00,       //6C       l       76
   0xF8,0x08,0x30,0x08,0xF8,       //6D       m
   0xF8,0x10,0x08,0x08,0xF0,       //6E       n       78
   0x70,0x88,0x88,0x88,0x70,       //6F       o       79
@@ -900,7 +900,7 @@ const unsigned char char_Small[] ={
   0x78,0x80,0x60,0x80,0x78,       //77       w
   0x88,0x50,0x20,0x50,0x88,       //78       x
   0x18,0xA0,0xA0,0xA0,0x78,       //79       y
-  0x88,0xC8,0xA8,0x98,0x88,       //7A       z
+  0x88,0xC8,0xA8,0x98,0x88,       //7A       z       90
   0xFE,0x7C,0x38,0x10,0x00,       //7B       三国
 
   0xF8,0x24,0x22,0x24,0xF8,       //7c        A
@@ -1289,5 +1289,81 @@ void display_set_rssi(u16 rs,u8 y)
 
     for(i=0;i<3;i++)
     display_map_xy(62+24+i*6,y,5,8,char_Small+(char_rssi[i]-0x20)*5);     //dBm
+}
+
+void display_test_mode(u8 mode)
+{
+    lcd_clear(1);
+    if(mode == 0)
+    {
+        display_map_xy(20,24,5,8,char_Small+52*5);//T
+        display_map_xy(25+2,24,5,8,char_Small+37*5);//E
+        display_map_xy(30+4,24,5,8,char_Small+51*5);//S
+        display_map_xy(35+6,24,5,8,char_Small+52*5);//T
+        display_map_xy(40+8,24,5,8,char_Small+0*5);//空格
+        display_map_xy(45+10,24,5,8,char_Small+52*5);//T
+        display_map_xy(50+12,24,5,8,char_Small+56*5);//X
+        display_map_xy(55+14,24,5,8,char_Small+0*5);//空格
+        display_map_xy(60+16,24,5,8,char_Small+35*5);//C
+        display_map_xy(65+18,24,5,8,char_Small+65*5);//a
+        display_map_xy(70+20,24,5,8,char_Small+82*5);//r
+        display_map_xy(75+22,24,5,8,char_Small+82*5);//r
+        display_map_xy(80+24,24,5,8,char_Small+73*5);//i
+        display_map_xy(85+26,24,5,8,char_Small+69*5);//e
+        display_map_xy(90+28,24,5,8,char_Small+82*5);//r
+    }
+    else if(mode == 1)
+    {
+        display_map_xy(20,24,5,8,char_Small+52*5);//T
+        display_map_xy(25+2,24,5,8,char_Small+37*5);//E
+        display_map_xy(30+4,24,5,8,char_Small+51*5);//S
+        display_map_xy(35+6,24,5,8,char_Small+52*5);//T
+        display_map_xy(40+8,24,5,8,char_Small+0*5);//空格
+        display_map_xy(45+10,24,5,8,char_Small+52*5);//T
+        display_map_xy(50+12,24,5,8,char_Small+56*5);//X
+        display_map_xy(55+14,24,5,8,char_Small+0*5);//空格
+        display_map_xy(60+16,24,5,8,char_Small+45*5);//M
+        display_map_xy(65+18,24,5,8,char_Small+79*5);//o
+        display_map_xy(70+20,24,5,8,char_Small+68*5);//d
+        display_map_xy(75+22,24,5,8,char_Small+85*5);//u
+        display_map_xy(80+24,24,5,8,char_Small+76*5);//l
+    }
+    else if(mode == 3)
+    {
+        display_map_xy(20,24,5,8,char_Small+52*5);//T
+        display_map_xy(25+2,24,5,8,char_Small+37*5);//E
+        display_map_xy(30+4,24,5,8,char_Small+51*5);//S
+        display_map_xy(35+6,24,5,8,char_Small+52*5);//T
+        display_map_xy(40+8,24,5,8,char_Small+0*5);//空格
+        display_map_xy(45+10,24,5,8,char_Small+50*5);//R
+        display_map_xy(50+12,24,5,8,char_Small+56*5);//X
+        display_map_xy(55+14,24,5,8,char_Small+0*5);//空格
+        display_map_xy(60+16,24,5,8,char_Small+50*5);//R
+        display_map_xy(65+18,24,5,8,char_Small+51*5);//S
+        display_map_xy(70+20,24,5,8,char_Small+51*5);//S
+        display_map_xy(75+22,24,5,8,char_Small+41*5);//I
+    }
+    else
+    {
+        display_map_xy(20,24,5,8,char_Small+52*5);//T
+        display_map_xy(25+2,24,5,8,char_Small+37*5);//E
+        display_map_xy(30+4,24,5,8,char_Small+51*5);//S
+        display_map_xy(35+6,24,5,8,char_Small+52*5);//T
+        display_map_xy(40+8,24,5,8,char_Small+0*5);//空格
+        display_map_xy(45+10,24,5,8,char_Small+45*5);//M
+        display_map_xy(50+12,24,5,8,char_Small+47*5);//O
+        display_map_xy(55+14,24,5,8,char_Small+36*5);//D
+        display_map_xy(60+16,24,5,8,char_Small+37*5);//E
+    }
+    display_map_xy(20,40,5,8,char_Small+20*5);//4
+    display_map_xy(25+2,40,5,8,char_Small+18*5);//2
+    display_map_xy(30+4,40,5,8,char_Small+25*5);//9
+    display_map_xy(35+6,40,5,8,char_Small+14*5);//.
+    display_map_xy(40+8,40,5,8,char_Small+19*5);//3
+    display_map_xy(45+10,40,5,8,char_Small+16*5);//0
+    display_map_xy(50+12,40,5,8,char_Small+16*5);//0
+    display_map_xy(55+14,40,5,8,char_Small+45*5);//M
+    display_map_xy(60+16,40,5,8,char_Small+40*5);//H
+    display_map_xy(65+16,40,5,8,char_Small+90*5);//z
 }
 

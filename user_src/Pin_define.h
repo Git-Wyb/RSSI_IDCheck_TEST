@@ -290,12 +290,12 @@ extern u8 LED_Cache;
 #define KEY_SW4_Down 3
 
 /**WORK/TEST切换引脚寄存器*****/
-#define WORK_TEST 1//PB_IDR_IDR0     // Input 受信机测试脚  高电平有效
+#define WORK_TEST PB_IDR_IDR0     // Input 受信机测试脚  高电平有效
 #define WORK_TEST_DDR PB_DDR_DDR0 // Input 受信机测试脚  高电平有效
 #define WORK_TEST_CR1 PB_CR1_C10  // Input 受信机测试脚  高电平有效
 #define WORK_TEST_CR2 PB_CR2_C20  // Input 受信机测试脚  高电平有效
 
-#define Receiver_test 1//PB_IDR_IDR0       // Input 受信机测试脚  高电平有效
+#define Receiver_test PB_IDR_IDR0       // Input 受信机测试脚  高电平有效
 #define Freq_Select_429or426MHz  PB_IDR_IDR0
 #define Receiver_test_direc PB_DDR_DDR0 // Input 受信机测试脚  高电平有效
 #define Receiver_test_CR1 PB_CR1_C10    // Input 受信机测试脚  高电平有效
@@ -346,21 +346,21 @@ extern u8 LED_Cache;
 #define	PIN_LCD_SDATA		PA_ODR_ODR4			// 输出；LCD串行数据(√)
 #define	PIN_LCD_A0_RS		PA_ODR_ODR5			// 输出；LCD命令数据选择端  0--命令   1--数据(√)
 #define	PIN_LCD_SEL		    PD_ODR_ODR3			// 输出；芯片片选   低电平有效(√)
-#define	PIN_LCD_LED		    PA_ODR_ODR3	
+#define	PIN_LCD_LED		    PA_ODR_ODR3
 
-#define PIN_LCD_LED_direc      PA_DDR_DDR3    // Output   
-#define PIN_LCD_SDATA_direc    PA_DDR_DDR4    // Output   
-#define PIN_LCD_SEL_direc      PD_DDR_DDR3  // Output   
-#define PIN_LCD_RST_direc      PD_DDR_DDR2  // Output   
-#define PIN_LCD_SCLK_direc     PD_DDR_DDR1  // Output   
-#define PIN_LCD_A0_RS_direc    PA_DDR_DDR5   // Output 
+#define PIN_LCD_LED_direc      PA_DDR_DDR3    // Output
+#define PIN_LCD_SDATA_direc    PA_DDR_DDR4    // Output
+#define PIN_LCD_SEL_direc      PD_DDR_DDR3  // Output
+#define PIN_LCD_RST_direc      PD_DDR_DDR2  // Output
+#define PIN_LCD_SCLK_direc     PD_DDR_DDR1  // Output
+#define PIN_LCD_A0_RS_direc    PA_DDR_DDR5   // Output
 
-#define PIN_LCD_LED_CR1       PA_CR1_C13    // Output   
-#define PIN_LCD_SDATA_CR1     PA_CR1_C14    // Output   
-#define PIN_LCD_SEL_CR1       PD_CR1_C13  // Output   
-#define PIN_LCD_RST_CR1       PD_CR1_C12  // Output   
-#define PIN_LCD_SCLK_CR1      PD_CR1_C11  // Output   
-#define PIN_LCD_A0_RS_CR1     PA_CR1_C15   // Output 
+#define PIN_LCD_LED_CR1       PA_CR1_C13    // Output
+#define PIN_LCD_SDATA_CR1     PA_CR1_C14    // Output
+#define PIN_LCD_SEL_CR1       PD_CR1_C13  // Output
+#define PIN_LCD_RST_CR1       PD_CR1_C12  // Output
+#define PIN_LCD_SCLK_CR1      PD_CR1_C11  // Output
+#define PIN_LCD_A0_RS_CR1     PA_CR1_C15   // Output
 
 
 
