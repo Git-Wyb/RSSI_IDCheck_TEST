@@ -89,7 +89,7 @@ void main(void)
     {
         flag_mode = 1;
         if(FLAG_Freq_Select_429or426MHz==0)Channels=1;//FLAG_ID_Login_FromUART=1;
-        else Channels=11;//FLAG_ID_Login_FromUART=0;
+        else Channels=12;//FLAG_ID_Login_FromUART=0;
     }
     else
     {
@@ -105,7 +105,7 @@ void main(void)
         if (time_Login_exit_256 == 0)
             ID_Decode_OUT();
         ID_learn();
-        APP_TX_PACKET();
+        //APP_TX_PACKET();
         if(FLAG_APP_RX==1)
         {
     		  Freq_Scanning();

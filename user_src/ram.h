@@ -72,6 +72,7 @@ extern volatile uFLAG FLAG2;
 #define FLAG_Freq_Select_429or426MHz FLAG2.BIT.Bit4
 #define flag_mode FLAG2.BIT.Bit5
 #define flag_testmode FLAG2.BIT.Bit6
+#define flag_end FLAG2.BIT.Bit7
 //************************************************
 
 
@@ -196,6 +197,8 @@ extern u8 TIME_TX_RSSI_Scan;
 extern u8 flag_reg_state;
 extern u16 time_led;
 extern u8 set_check_rssi;
+extern u16 time_end;
+extern u32 time_overtime;
 #define ENTER_ADD_STATE 0xB0
 #define EXIT_STATE  0xB1
 #define REGISTER_STATE 0xB2

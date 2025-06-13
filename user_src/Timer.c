@@ -61,27 +61,41 @@ void TIM4_UPD_OVF(void)
        --Time_APP_blank_TX;
     if(Time_acc)
        --Time_acc;
-
     if(PROFILE_CH_FREQ_32bit_200002EC == PROFILE_429HighSpeed_Register)
     {
+        if(step != 0) time_overtime++;
+        if(time_overtime >= 80000) {step = 0;display_reg(0);time_overtime = 0;}  //80s
+        if(time_end) time_end--;
+        if(flag_end == 1 && time_end == 0)
+        {
+            flag_end = 0;
+            display_reg(0);
+        }
         if(time_led) time_led--;
         if(flag_reg_state == ENTER_ADD_STATE || flag_reg_state == ENTER_ERASE_STATE)
         {
             step = 1;
             time_led = 500;
             flag_reg_state = 0;
+            flag_end = 0;
+            time_overtime = 0;
         }
         else if(flag_reg_state == REGISTER_STATE)
         {
             step = 2;
             time_led = 500;
             flag_reg_state = 0;
+            flag_end = 0;
+            time_overtime = 0;
         }
         else if(flag_reg_state == EXIT_STATE)
         {
             step = 0;
             flag_reg_state = 0;
             display_reg(2);
+            time_end = 5000;
+            flag_end = 1;
+            time_overtime = 0;
         }
         switch(step)
         {

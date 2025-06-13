@@ -137,7 +137,8 @@ u8 Channels=1;
 u8 flag_reg_state = 0;
 u16 time_led = 0;
 u8 set_check_rssi = 5;
-
+u16 time_end = 0;
+u32 time_overtime = 0;
 
 u32 TX_ID_data=0;
 u8 TX_Control_code_TYPE01=0;

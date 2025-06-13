@@ -29,9 +29,9 @@ extern const unsigned char char_Medium[];
 extern const unsigned char char_Contro[];
 extern const unsigned char char_RSSI[];
 extern const unsigned char char_rssi[];
-
-
-
+extern const unsigned char char_bmp_Login[];
+extern const unsigned char char_bmp_End[];
+extern const unsigned char char_bmp_LoginCheck[];
 
 extern UINT32 lcd_DATA_Packet_ID;
 extern u8 lcd_DATA_Packet_Control;
