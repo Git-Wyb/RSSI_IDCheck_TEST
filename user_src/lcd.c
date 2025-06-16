@@ -398,7 +398,7 @@ void lcd_desplay(void)
       else
       {
          display_reg(0);
-         /*
+        /*
         display_map_xy(15,27,5,8,char_Small+44*5);//L
         display_map_xy(20+1,27,5,8,char_Small+47*5);//O
         display_map_xy(25+2,27,5,8,char_Small+39*5);//G
@@ -1202,7 +1202,21 @@ void display_reg(u8 ch)
     switch(ch)
     {
         case 0:
-            display_map_xy(10,24,116,16,char_bmp_LoginCheck);
+            //display_map_xy(10,24,116,16,char_bmp_LoginCheck);
+            display_map_xy(15,27,5,8,char_Small+44*5);//L
+            display_map_xy(20+1,27,5,8,char_Small+47*5);//O
+            display_map_xy(25+2,27,5,8,char_Small+39*5);//G
+            display_map_xy(30+3,27,5,8,char_Small+41*5);//I
+            display_map_xy(35+4,27,5,8,char_Small+46*5);//N
+            display_map_xy(40+5,27,5,8,char_Small+0*5);//¿Õ¸ñ
+
+            display_map_xy(45+6,27,5,8,char_Small+35*5);//C
+            display_map_xy(50+7,27,5,8,char_Small+40*5);//H
+            display_map_xy(55+8,27,5,8,char_Small+37*5);//E
+            display_map_xy(60+9,27,5,8,char_Small+35*5);//C
+            display_map_xy(65+10,27,5,8,char_Small+43*5);//K
+            display_map_xy(70+11,27,5,8,char_Small+37*5);//E
+            display_map_xy(75+12,27,5,8,char_Small+50*5);//R
             break;
 
         case 1:
