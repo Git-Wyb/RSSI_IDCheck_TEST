@@ -29,10 +29,11 @@ void ID_learn(void);
 
 #define UNLOCK_FLASH_TYPE ((unsigned char)0x00)
 #define UNLOCK_EEPROM_TYPE ((unsigned char)0x01)
-
+void eeprom_write_byte(u16 addr,u8 data);
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //%                  EEPROM MAP                  %
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #define addr_eeprom_sys 0x1000 // SYS=0x4000~0x400F
+#define AddrEeprom_SetRssi  0x3FA
 
 #endif

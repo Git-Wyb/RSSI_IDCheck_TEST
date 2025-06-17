@@ -23,3 +23,5 @@
 2025.06.13   TEST_LoginCheck_V006.hex
 未进入登录模式显示“LOGIN CHECKER”，进入登录模式显示“トウロクモードチュウ”，退出登录模式显示“トウロクシュウリョウ”。
 
+2025.03.16  TEST_LoginCheck_V007.hex
+设定值rssi保存至eeprom

@@ -110,34 +110,34 @@
 #if defined (STM8L15X_MD) || defined (STM8L15X_MDP) || defined (STM8L15X_LD)  ||  defined (STM8L15X_HD)     //STM8L
 void OTA_bootloader_enable(void)
 {
-    FLASH_DUKR = 0xae;     
-    asm("nop");     
-    FLASH_DUKR = 0x56;                  // 解除写保�?     
-    asm("nop");     
-    while(!(FLASH_IAPSR & 0x08));       // 等待解锁     
-    asm("nop");     
-    FLASH_CR2 = 0x80;                   // 对�?�项字节进行写操�?     
-    asm("nop");     
-    *((unsigned char *)0x480b) = 0x55;     
-    asm("nop");     
-    *((unsigned char *)0x480c) = 0xaa;  // 写入选项字节       
+    FLASH_DUKR = 0xae;
+    asm("nop");
+    FLASH_DUKR = 0x56;                  // 解除写保�?
+    asm("nop");
+    while(!(FLASH_IAPSR & 0x08));       // 等待解锁
+    asm("nop");
+    FLASH_CR2 = 0x80;                   // 对�?�项字节进行写操�?
+    asm("nop");
+    *((unsigned char *)0x480b) = 0x55;
+    asm("nop");
+    *((unsigned char *)0x480c) = 0xaa;  // 写入选项字节
 }
 #else    //STM8S
 void OTA_bootloader_enable(void)
 {
-    FLASH_DUKR = 0xae;     
-    asm("nop");     
-    FLASH_DUKR = 0x56;     
-    asm("nop");     
-    while(!(FLASH_IAPSR & 0x08));     
-    asm("nop");     
-    FLASH_CR2 = 0x80;     
-    asm("nop");     
-    FLASH_NCR2 = 0x7f;     
-    asm("nop");     
-    *((unsigned char *)0x487e) = 0x55;     
-    asm("nop");     
-    *((unsigned char *)0x487f) = 0xaa;  
+    FLASH_DUKR = 0xae;
+    asm("nop");
+    FLASH_DUKR = 0x56;
+    asm("nop");
+    while(!(FLASH_IAPSR & 0x08));
+    asm("nop");
+    FLASH_CR2 = 0x80;
+    asm("nop");
+    FLASH_NCR2 = 0x7f;
+    asm("nop");
+    *((unsigned char *)0x487e) = 0x55;
+    asm("nop");
+    *((unsigned char *)0x487f) = 0xaa;
 }
 #endif
 
@@ -202,6 +202,14 @@ void eeprom_save(void)
         WriteByteToFLASH(addr_eeprom_sys + i, eeprom_sys_buff);
     LockFlash(UNLOCK_EEPROM_TYPE);
 }
+
+void eeprom_write_byte(u16 addr,u8 data)
+{
+    UnlockFlash(UNLOCK_EEPROM_TYPE);
+    WriteByteToFLASH(addr_eeprom_sys + addr, data);
+    LockFlash(UNLOCK_EEPROM_TYPE);
+}
+
 void eeprom_sys_load(void)
 {
     //unsigned char	i;
@@ -257,6 +265,9 @@ void eeprom_sys_load(void)
         if ((ROM_adf7030_value[i].whole_reg == 0) || (ROM_adf7030_value[i].whole_reg == 0xFFFFFFFF))
             ROM_adf7030_value[i] = Default_adf7030_value[i];
     }
+
+    set_check_rssi = (0xFF & ReadByteEEPROM(addr_eeprom_sys + AddrEeprom_SetRssi));
+    if(set_check_rssi < 1 || set_check_rssi > 12) set_check_rssi = 5;
 }
 
 void ALL_ID_EEPROM_Erase(void)

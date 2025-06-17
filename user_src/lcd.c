@@ -14,7 +14,7 @@
 #include "lcd.h"		// RAM¶¨Òå
 #include "ADF7030_1.h"
 #include "uart.h"
-
+#include "eeprom.h"
 
 unsigned int lcd_rssi;
 UINT8 Flag_Display_key_SW3=0;
@@ -341,6 +341,7 @@ void lcd_desplay(void)
               set_check_rssi++;
               if(set_check_rssi > 12)  set_check_rssi = 1;
               display_set_rssi(set_check_rssi * 100,120);
+              eeprom_write_byte(AddrEeprom_SetRssi,set_check_rssi);
           }
       }
 	else if(KEY_SW4_close==1)FLAG_KEY_SW4_close=0;
@@ -353,6 +354,7 @@ void lcd_desplay(void)
                 set_check_rssi--;
                 if(set_check_rssi <= 0)  set_check_rssi = 12;
                 display_set_rssi(set_check_rssi * 100,120);
+                eeprom_write_byte(AddrEeprom_SetRssi,set_check_rssi);
             }
       }
 	else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;
