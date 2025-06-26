@@ -85,7 +85,7 @@ void main(void)
 
 	FLAG_Freq_Select_429or426MHz=Freq_Select_429or426MHz;
     flag_mode = 0;
-    if(KEY_SW2_open == 0)
+    if(KEY_SW2_open == 1)
     {
         flag_mode = 1;
         if(FLAG_Freq_Select_429or426MHz==0)Channels=1;//FLAG_ID_Login_FromUART=1;

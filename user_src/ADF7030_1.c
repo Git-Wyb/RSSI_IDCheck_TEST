@@ -655,7 +655,7 @@ void RX_ANALYSIS(void)
 {
     u8 i;
     TIMER300ms = 500;
-    FG_Receiver_LED_RX = 1;
+    //FG_Receiver_LED_RX = 1;
     // if (WORK_TEST == 0)
     //     Send_Data(&SPI_RECEIVE_BUFF[3], PAYLOAD_SIZE);
     for (i = 0; i < 7; i++)

@@ -25,3 +25,6 @@
 
 2025.03.16  TEST_LoginCheck_V007.hex
 设定值rssi保存至eeprom
+
+2025.06.20  QL-TEST_LoginCheck_V008.hex
+青柳内部使用，ID检查模式可以设置RSSI有效值。

@@ -174,7 +174,7 @@ void ID_Decode_IDCheck(void)
                     if(Radio_Date_Type==1)TIMER300ms = 700;
 					else TIMER300ms = 500;
                     //Receiver_LED_RX=1;
-                    FG_Receiver_LED_RX = 1;
+                    //FG_Receiver_LED_RX = 1;
                     //#endif
                 }
             }
@@ -339,6 +339,7 @@ void Receiver_BEEP(void)
 void ID_Decode_OUT(void)
 {
     UINT8 Control_i;
+    char rssi = 0;
     //    if(Freq_Scanning_CH_bak==0) Control_i=DATA_Packet_Control&0xFF;
     //    else Control_i=DATA_Packet_Control&0x0E;
     //    if(HA_Sensor_signal==1)Receiver_LED_TX=0;                      //test 接近信号回路
@@ -347,6 +348,12 @@ void ID_Decode_OUT(void)
     Control_i = DATA_Packet_Control & 0xFF;
     if (TIMER1s)
     {
+        rssi=RAM_RSSI_AVG/128;
+        rssi=-rssi;
+        if(rssi>=127)rssi=127;
+        if(rssi <= (set_check_rssi * 10))
+        {
+            FG_Receiver_LED_RX = 1;
         if(PROFILE_CH_FREQ_32bit_200002EC != PROFILE_429HighSpeed_Register) Receiver_LED_OUT = 1;
         switch (Control_i)
         {
@@ -476,6 +483,7 @@ void ID_Decode_OUT(void)
             break;
         default:
             break;
+            }
         }
         //if((DATA_Packet_Control==0x00)&&(FLAG_APP_Reply==0)) FLAG_APP_Reply=1;
         //if(((DATA_Packet_Control==0x00)||(DATA_Packet_Control==0x02)||(DATA_Packet_Control==0x08))&&(FLAG_APP_Reply==0)&&(Freq_Scanning_CH_save_HA==1)) FLAG_APP_Reply=1;
