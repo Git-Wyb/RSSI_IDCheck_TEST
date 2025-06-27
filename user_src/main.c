@@ -64,7 +64,10 @@ void main(void)
     beep_init();       // ???
     ClearWDT();        // Service the WDT
 
-    PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+    if(KEY_SW2_open == 0)
+        PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+    else
+        PROFILE_CH_FREQ_32bit_200002EC = PROFILE_429HighSpeed_Register;
     PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
     PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
     PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;

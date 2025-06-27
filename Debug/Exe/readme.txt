@@ -23,5 +23,8 @@
 2025.06.13   TEST_LoginCheck_V006.hex
 未进入登录模式显示“LOGIN CHECKER”，进入登录模式显示“トウロクモードチュウ”，退出登录模式显示“トウロクシュウリョウ”。
 
-2025.03.16  TEST_LoginCheck_V007.hex
+2025.06.16  TEST_LoginCheck_V007.hex
 设定值rssi保存至eeprom
+
+2025.06.27  TEST_LoginCheck_V008.hex
+上电瞬间如果接收到426信号会显示426数据，所以将初始化是频率设为429.300.

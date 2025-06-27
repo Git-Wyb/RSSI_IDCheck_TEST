@@ -1260,6 +1260,8 @@ void display_reg(u8 ch)
                 display_map_xy(85+26,24,5,8,char_Small+14*5);//.
                 display_map_xy(90+28,24,5,8,char_Small+14*5);//.*/
             }
+            else
+                display_map_xy(10,24,116,16,char_bmp_Login);
             break;
 
         case 2:
