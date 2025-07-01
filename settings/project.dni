@@ -1,7 +1,7 @@
 [DebugChecksum]
 <<<<<<< HEAD
 <<<<<<< HEAD
-Checksum=1831503473
+Checksum=-894739437
 =======
 Checksum=1759408442
 >>>>>>> SCX1702_LCD_for_RSSI
@@ -71,11 +71,12 @@ Fmt1=uFLAG-BYTE	4	0
 [array_types]
 Fmt0=u32_t[6]	4	0
 Fmt1=u32_t[7]	4	0
-Fmt2=u8_t[9]	4	0
-Fmt3=unsigned char[110]	4	0
-Fmt4=unsigned char[3]	4	0
-Fmt5=unsigned char[4]	4	0
-Fmt6=unsigned char[9]	4	0
+Fmt2=u8_t[40]	4	0
+Fmt3=u8_t[9]	4	0
+Fmt4=unsigned char[110]	4	0
+Fmt5=unsigned char[3]	4	0
+Fmt6=unsigned char[4]	4	0
+Fmt7=unsigned char[9]	4	0
 [watch_formats]
 Fmt0={W}0:COUNT_Receiver_Login	3	0
 Fmt1={W}0:RAM_rssi_AVG	3	0

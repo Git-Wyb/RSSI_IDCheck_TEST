@@ -28,3 +28,8 @@
 
 2025.06.20  QL-TEST_LoginCheck_V008.hex
 青柳内部使用，ID检查模式可以设置RSSI有效值。
+
+2025.07.01  QL-TEST_LoginCheck_V009.hex
+ID检查模式显示429接收数据
+
+

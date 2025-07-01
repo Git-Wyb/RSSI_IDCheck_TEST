@@ -316,7 +316,7 @@ u8 re_sta = 0;
 void lcd_desplay(void)
 {
   UINT8 i,x,data,vv=32;
-  UINT8 cc=56;
+  UINT8 cc=40;
   UINT32 num;
   char rssi;
 
@@ -510,7 +510,7 @@ void lcd_desplay(void)
           }
           display_map_xy(80+4*6,24,5,8,char_Small+('.'-0x20)*5);
 
-          /*lcd_clear_line8(1);
+          //lcd_clear_line8(1);
           if(Radio_Date_Type==1)
           {
              display_map_xy(0*6,cc,5,8,char_Small+(hex_asc(lcd_DATA_Packet_Control/16)-0x20)*5);
@@ -530,7 +530,7 @@ void lcd_desplay(void)
                 LCD_display_argos_rssi((lcd_Struct_DATA_Packet_Contro[3]&0x7F) * 10, cc);
               }
                  }
-          } */
+          }
           display_set_rssi((set_check_rssi * 100),120);
            switch (DATA_Packet_Contro_buf){
                          case 0x02:                              //close
@@ -566,13 +566,16 @@ void lcd_desplay(void)
                          case 0x09:                       //vent+OPEN
                          case 0x03:                       //vent+close
                          default:
-                                    display_map_xy(0,vv,2,24,char_Contro+13*48);
-                                    display_map_xy(2,vv,16,24,char_Contro+13*48);
-                                    display_map_xy(2+1*16,vv,16,24,char_Contro+13*48);
-                                    display_map_xy(2+2*16,vv,16,24,char_Contro+13*48);
-                                    display_map_xy(2+3*16,vv,16,24,char_Contro+13*48);
-                                    display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);
-                                    break;
+                            if(Radio_Date_Type != 2)
+                            {
+                                display_map_xy(0,vv,2,24,char_Contro+13*48);
+                                display_map_xy(2,vv,16,24,char_Contro+13*48);
+                                display_map_xy(2+1*16,vv,16,24,char_Contro+13*48);
+                                display_map_xy(2+2*16,vv,16,24,char_Contro+13*48);
+                                display_map_xy(2+3*16,vv,16,24,char_Contro+13*48);
+                                display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);
+                            }
+                            break;
                      }
             }
           }
