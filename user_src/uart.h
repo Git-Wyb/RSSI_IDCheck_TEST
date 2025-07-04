@@ -44,7 +44,7 @@ typedef union {
         unsigned char SW_Info : 8;
         unsigned char AbnormalOut1 : 8;
         unsigned char AbnormalOut2 : 8;
-    };   
+    };
 } __Databits_t;
 typedef enum {
     IdelStatues = 0,
@@ -57,7 +57,7 @@ extern __U1Statues U1Statues;
 extern unsigned int U1AckTimer;
 #define U1AckDelayTime 1
 
-void UART1_INIT(void);
+void UART1_INIT(u8 mode);
 void UART1_RX_RXNE(void);
 void Power_ON_sendVer(void);
 void Send_char(unsigned char ch);

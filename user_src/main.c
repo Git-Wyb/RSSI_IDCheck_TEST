@@ -53,7 +53,7 @@ unsigned char Soft_Version[7]="Ver0.33";
 void main(void)
 {
     _DI();             // ?????
-    OTA_bootloader_enable(); //??IAP???OTA   
+    OTA_bootloader_enable(); //??IAP???OTA
     RAM_clean();       // ??RAM
     WDT_init();        //???
     VHF_GPIO_INIT();   //IO???
@@ -63,14 +63,14 @@ void main(void)
     TIM4_Init();       // ???
     beep_init();       // ???
     ClearWDT();        // Service the WDT
-    
+
     PROFILE_CH_FREQ_32bit_200002EC = 426075000;
-    PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;  
+    PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
     PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
-    PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;	
+    PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;
     ADF7030Init();     //?????
-    
-    UART1_INIT();      // UART1 for PC Software
+
+    UART1_INIT(0);      // UART1 for PC Software
     _EI();             // ????
     ClearWDT();        // Service the WDT
     lcd_init();
@@ -86,10 +86,13 @@ void main(void)
 	FLAG_Freq_Select_429or426MHz=Freq_Select_429or426MHz;
 	if(FLAG_Freq_Select_429or426MHz==0)Channels=1;//FLAG_ID_Login_FromUART=1;
 	else Channels=11;//FLAG_ID_Login_FromUART=0;
+    display_RxNum(0);
+    display_Freq(426075000);
     while (1)
     {
         if(FLAG_Freq_Select_429or426MHz!=Freq_Select_429or426MHz)while(1);
-		
+        if(flag_uart_state == 0)    key_freq();
+
         ClearWDT(); // Service the WDT
         if (time_Login_exit_256 == 0)
             ID_Decode_OUT();
@@ -97,13 +100,13 @@ void main(void)
         APP_TX_PACKET();
         if(FLAG_APP_RX==1)
         {
-    		  Freq_Scanning();
+    		  //Freq_Scanning();
 			  	SCAN_RECEIVE_PACKET(); //??????
         }
-        TranmissionACK();
-        wireless_Receive_SendUart();
+        //TranmissionACK();
+        //wireless_Receive_SendUart();
 
-		lcd_desplay();
+		//lcd_desplay();
 
         if (FG_Receiver_LED_RX == 1)
             Receiver_LED_RX = 1;

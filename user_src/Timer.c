@@ -28,13 +28,13 @@ void TIM4_UPD_OVF(void)
     if (TIMER1s)
         --TIMER1s;
 	if(TIME_TX_RSSI_Scan)
-		--TIME_TX_RSSI_Scan;	
+		--TIME_TX_RSSI_Scan;
     if (TIMER300ms)
         --TIMER300ms;
     if (TIMER18ms)
         --TIMER18ms;
     if (TIME_RSSI_Scan)
-        --TIME_RSSI_Scan;	
+        --TIME_RSSI_Scan;
     if (TIMER250ms_STOP)
         --TIMER250ms_STOP;
     if (TIME_10ms)
@@ -50,15 +50,24 @@ void TIM4_UPD_OVF(void)
         Flag_RSSI_Read_Timer--;
     if (X_ERRTimer)
         X_ERRTimer--;
-    
+
     if (Time_Receive_gap)
       --Time_Receive_gap;
     if (Time_APP_RXstart)
-      --Time_APP_RXstart;    
+      --Time_APP_RXstart;
     if(Time_APP_blank_TX)
        --Time_APP_blank_TX;
     if(Time_acc)
        --Time_acc;
-    
+
     TIM4_SR1_bit.UIF = 0; // 清除中断标记
+}
+
+void delay_ms(u8 ms)
+{
+    Time_acc = ms;
+    while(Time_acc)
+    {
+        ClearWDT();
+    }
 }

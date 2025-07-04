@@ -7,7 +7,7 @@
 /*  Mark        :ver 1.0                                               */
 /***********************************************************************/
 
-#include  <iostm8l151g4.h>				// CPU–Õ∫≈ 
+#include  <iostm8l151g4.h>				// CPU–Õ∫≈
 #include "Pin_define.h"		// π‹Ω≈∂®“Â
 #include "initial.h"		// ≥ı ºªØ  ‘§∂®“Â
 #include "ram.h"		// RAM∂®“Â
@@ -45,24 +45,24 @@ u8 FLAG_KEY_SW2_open=0;
 void lcd_GPIO_init(void)
 {
 
-PIN_LCD_LED_direc	   = Output;  
+PIN_LCD_LED_direc	   = Output;
 PIN_LCD_LED_CR1=1;
 PIN_LCD_LED=1;
-PIN_LCD_SDATA_direc    = Output;	
+PIN_LCD_SDATA_direc    = Output;
 PIN_LCD_SDATA_CR1=1;
-PIN_LCD_SDATA=0;	
-PIN_LCD_SEL_direc	   = Output; 
+PIN_LCD_SDATA=0;
+PIN_LCD_SEL_direc	   = Output;
 PIN_LCD_SEL_CR1=1;
-PIN_LCD_SEL=0;	   
-PIN_LCD_RST_direc	   = Output;	
+PIN_LCD_SEL=0;
+PIN_LCD_RST_direc	   = Output;
 PIN_LCD_RST_CR1=1;
-PIN_LCD_RST=0;	   
-PIN_LCD_SCLK_direc	   = Output; 
+PIN_LCD_RST=0;
+PIN_LCD_SCLK_direc	   = Output;
 PIN_LCD_SCLK_CR1=1;
-PIN_LCD_SCLK=0; 	
-PIN_LCD_A0_RS_direc    = Output;  
+PIN_LCD_SCLK=0;
+PIN_LCD_A0_RS_direc    = Output;
 PIN_LCD_A0_RS_CR1=1;
-PIN_LCD_A0_RS=0;  
+PIN_LCD_A0_RS=0;
 
 
 }
@@ -189,22 +189,22 @@ void display_map_xy(unsigned char x,unsigned char y,unsigned char l,unsigned cha
 {
    unsigned char i;
    unsigned char seg;
-   unsigned char page; 
+   unsigned char page;
    unsigned char com0,com1;
    com1=x/16+0x10;
    com0=x%16;
    for(i=0;i<h/8;i++)
-   {  
+   {
       page=0xb0+i+y/8;
       send_command(page);
       send_command(com1); //¡–µÿ÷∑£¨∏ﬂµÕ◊÷Ω⁄¡Ω¥Œ–¥»Î£¨¥”µ⁄0 ¡–ø™ º
-      send_command(com0);  
+      send_command(com0);
       for(seg=x;seg<(l+x);seg++)//–¥128 ¡–
-        { send_data(*p++); }      
-   } 
+        { send_data(*p++); }
+   }
 }
 
-void lcd_clear(unsigned char data1) 
+void lcd_clear(unsigned char data1)
 {
                                     //------®∞???®∫????®¢3®¨D®∞
     unsigned char seg;
@@ -215,14 +215,14 @@ void lcd_clear(unsigned char data1)
       send_command(0x10); //®¢D¶Ã??°§°Í???¶Ã®™°¡??®≤®¢?°‰?D°‰®®?°Í?°‰®Æ¶Ã®≤0 ®¢D?a®∫?
       send_command(0x00);
       for(seg=0;seg<128;seg++)//D°‰128 ®¢D
-        { 
+        {
           if(data1==1)send_data(0x00);
-          else 	send_data(0xFF);				
+          else 	send_data(0xFF);
 				}
     }
 }
 
-void lcd_clear_1and2_line(unsigned char data1) 
+void lcd_clear_1and2_line(unsigned char data1)
 {
                                     //------®∞???®∫????®¢3®¨D®∞
     unsigned char seg;
@@ -233,14 +233,14 @@ void lcd_clear_1and2_line(unsigned char data1)
       send_command(0x10); //®¢D¶Ã??°§°Í???¶Ã®™°¡??®≤®¢?°‰?D°‰®®?°Í?°‰®Æ¶Ã®≤0 ®¢D?a®∫?
       send_command(0x00);
       for(seg=0;seg<128;seg++)//D°‰128 ®¢D
-        { 
+        {
           if(data1==1)send_data(0x00);
-          else 	send_data(0xFF);				
+          else 	send_data(0xFF);
 				}
     }
 }
 
-void lcd_clear_3and8_line(unsigned char data1) 
+void lcd_clear_3and8_line(unsigned char data1)
 {
                                     //------®∞???®∫????®¢3®¨D®∞
     unsigned char seg;
@@ -251,14 +251,14 @@ void lcd_clear_3and8_line(unsigned char data1)
       send_command(0x10); //®¢D¶Ã??°§°Í???¶Ã®™°¡??®≤®¢?°‰?D°‰®®?°Í?°‰®Æ¶Ã®≤0 ®¢D?a®∫?
       send_command(0x00);
       for(seg=0;seg<128;seg++)//D°‰128 ®¢D
-        { 
+        {
           if(data1==1)send_data(0x00);
-          else 	send_data(0xFF);				
+          else 	send_data(0xFF);
 				}
     }
 }
 
-void lcd_clear_line1(unsigned char data1) 
+void lcd_clear_line1(unsigned char data1)
 {
                                     //------®∞???®∫????®¢3®¨D®∞
     unsigned char seg;
@@ -269,14 +269,14 @@ void lcd_clear_line1(unsigned char data1)
       send_command(0x10); //®¢D¶Ã??°§°Í???¶Ã®™°¡??®≤®¢?°‰?D°‰®®?°Í?°‰®Æ¶Ã®≤0 ®¢D?a®∫?
       send_command(0x00);
       for(seg=0;seg<128;seg++)//D°‰128 ®¢D
-        { 
+        {
           if(data1==1)send_data(0x00);
-          else 	send_data(0xFF);				
+          else 	send_data(0xFF);
 				}
     }
 }
 
-void lcd_clear_line8(unsigned char data1) 
+void lcd_clear_line8(unsigned char data1)
 {
                                     //------®∞???®∫????®¢3®¨D®∞
     unsigned char seg;
@@ -287,9 +287,9 @@ void lcd_clear_line8(unsigned char data1)
       send_command(0x10); //®¢D¶Ã??°§°Í???¶Ã®™°¡??®≤®¢?°‰?D°‰®®?°Í?°‰®Æ¶Ã®≤0 ®¢D?a®∫?
       send_command(0x00);
       for(seg=0;seg<128;seg++)//D°‰128 ®¢D
-        { 
+        {
           if(data1==1)send_data(0x00);
-          else 	send_data(0xFF);				
+          else 	send_data(0xFF);
 				}
     }
 }
@@ -302,30 +302,30 @@ void lcd_desplay(void)
   UINT32 num;
   char rssi;
 
-#ifdef Factory_DEF  
+#ifdef Factory_DEF
   	 if((KEY_SW4_close==0)&&(FLAG_KEY_SW4_close==0))
  	   {FLAG_KEY_SW4_close=1;Display_key_SW3=0xff;}
      else if(KEY_SW4_close==1)FLAG_KEY_SW4_close=0;
-	 
+
   	 if((KEY_SW3_stop==0)&&(FLAG_KEY_SW3_stop==0))
  	   {FLAG_KEY_SW3_stop=1;Display_key_SW3=0xff;}
-     else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;	
+     else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;
 
   	 if((KEY_SW2_open==0)&&(FLAG_KEY_SW2_open==0))
  	   {FLAG_KEY_SW2_open=1;Display_key_SW3=0xff;}
-     else if(KEY_SW2_open==1)FLAG_KEY_SW2_open=0;	 
+     else if(KEY_SW2_open==1)FLAG_KEY_SW2_open=0;
 #else
 	if((KEY_SW4_close==0)&&(FLAG_KEY_SW4_close==0))
 	  {FLAG_KEY_SW4_close=1;FLAG_APP_TX_fromUART=1;}
 	else if(KEY_SW4_close==1)FLAG_KEY_SW4_close=0;
-	
+
 	if((KEY_SW3_stop==0)&&(FLAG_KEY_SW3_stop==0))
 	  {FLAG_KEY_SW3_stop=1;FLAG_APP_TX_fromUART=1;}
-	else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;  
-	
+	else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;
+
 	if((KEY_SW2_open==0)&&(FLAG_KEY_SW2_open==0))
 	  {FLAG_KEY_SW2_open=1;FLAG_APP_TX_fromUART=1;}
-	else if(KEY_SW2_open==1)FLAG_KEY_SW2_open=0;  	
+	else if(KEY_SW2_open==1)FLAG_KEY_SW2_open=0;
 #endif
 
 
@@ -336,18 +336,18 @@ void lcd_desplay(void)
       Display_key_SW3=Count_key_SW3;
       Flag_Display_key_SW3=1;
       lcd_clear(1);
-      
-      //display_map_xy(8,16,110,24,char_ID);    
+
+      //display_map_xy(8,16,110,24,char_ID);
       //*************************DISPLAY  "π´Àæ"
       if(Display_key_SW3==0){
          //Head_0x5515_or_0x5456=0x5515;
          display_map_xy(40+0*25,0,24,24,char_company+0*72);
-         display_map_xy(40+1*25,0,24,24,char_company+1*72); 
+         display_map_xy(40+1*25,0,24,24,char_company+1*72);
       }
       else {
          //Head_0x5515_or_0x5456=0x5456;
          display_map_xy(40+0*25,0,24,24,char_company+2*72);
-         display_map_xy(40+1*25,0,24,24,char_company+3*72); 
+         display_map_xy(40+1*25,0,24,24,char_company+3*72);
       }
       //*************************DISPLAY  "ID_CHECKER"
        display_map_xy(4,32,12,24,char_ID_CHECKER);
@@ -358,23 +358,23 @@ void lcd_desplay(void)
        display_map_xy(4+6*12,32,12,24,char_ID_CHECKER+6*36);
        display_map_xy(4+7*12,32,12,24,char_ID_CHECKER+7*36);
        display_map_xy(4+8*12,32,12,24,char_ID_CHECKER+8*36);
-       display_map_xy(4+9*12,32,12,24,char_ID_CHECKER+9*36);              
+       display_map_xy(4+9*12,32,12,24,char_ID_CHECKER+9*36);
     }
-  
 
-    
+
+
     if(Scan_step==1)//(rxphase!=0)
-	{  
+	{
 	  Scan_step=0;
 	  time_LCD_Display=200;   //2s
       if(Flag_Display_key_SW3==1){Flag_Display_key_SW3=0;lcd_clear(1);}
       //lcd_clear_1and2_line(1);
       lcd_clear_line1(1);
-	  
+
 	  rssi=RAM_RSSI_AVG/128;
 	  rssi=-rssi;
 	  if(rssi>=127)rssi=127;
-	  
+
       LCD_display_argos_rssi(rssi*10,0);
       lcd_rssi= rssi;
 
@@ -383,15 +383,15 @@ void lcd_desplay(void)
 	  x=(lcd_rssi-60)*12/60;
 	  if(x>=12)x=12;
 	  display_map_xy(12,0,71,8,char_rssi+x*71);
-    }       
-    
-     
+    }
+
+
     if(flag_lcd_id_updata==1){
       flag_lcd_id_updata=0;
       //lcd_clear_3and8_line(1);
       //delay(3000);
-   
-      num=lcd_DATA_Packet_ID;      
+
+      num=lcd_DATA_Packet_ID;
       for(i=0;i<8;i++)
       {
          data=num%10;
@@ -400,14 +400,14 @@ void lcd_desplay(void)
          display_map_xy(1+(7-i)*9,16,7,16,char_Medium+data*14);
       }
 
-      num=PROFILE_CH_FREQ_32bit_200002EC/1000;      
+      num=PROFILE_CH_FREQ_32bit_200002EC/1000;
       for(i=0;i<6;i++)
       {
          data=num%10;
          num=num/10;
          if(i<3)
             display_map_xy(80+(7-i)*6,24,5,8,char_Small+(hex_asc(data)-0x20)*5);
-         else 
+         else
             display_map_xy(80+(6-i)*6,24,5,8,char_Small+(hex_asc(data)-0x20)*5);
       }
       display_map_xy(80+4*6,24,5,8,char_Small+('.'-0x20)*5);
@@ -430,82 +430,82 @@ void lcd_desplay(void)
           if ((lcd_length_Struct_DATA_Packet_Contro == 3) && (i == 2))
           {
             LCD_display_argos_rssi((lcd_Struct_DATA_Packet_Contro[3]&0x7F) * 10, cc);
-          }            
+          }
 			 }
 	  }
-       switch (DATA_Packet_Contro_buf){				
-                     case 0x02:                              //close                       
+       switch (DATA_Packet_Contro_buf){
+                     case 0x02:                              //close
                                 display_map_xy(0,vv,2,24,char_Contro+13*48);
-                                display_map_xy(2,vv,16,24,char_Contro+8*48);      
+                                display_map_xy(2,vv,16,24,char_Contro+8*48);
                                 display_map_xy(2+1*16,vv,16,24,char_Contro+9*48);
                                 display_map_xy(2+2*15,vv,16,24,char_Contro+10*48);
                                 display_map_xy(2+3*16,vv,16,24,char_Contro+11*48);
-                                display_map_xy(2+4*16,vv,16,24,char_Contro+12*48);                       
+                                display_map_xy(2+4*16,vv,16,24,char_Contro+12*48);
                                 break;
                      case 0x04:                           //stop
                                 display_map_xy(0,vv,2,24,char_Contro+13*48);
-                                display_map_xy(2,vv,16,24,char_Contro+4*48);      
+                                display_map_xy(2,vv,16,24,char_Contro+4*48);
                                 display_map_xy(2+1*16,vv,16,24,char_Contro+5*48);
                                 display_map_xy(2+2*15,vv,16,24,char_Contro+6*48);
                                 display_map_xy(2+3*16,vv,16,24,char_Contro+7*48);
-                                display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);                         
+                                display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);
                                 break;
-                     case 0x08:                         //open                       
+                     case 0x08:                         //open
                                 display_map_xy(0,vv,2,24,char_Contro+13*48);
-                                display_map_xy(2,vv,16,24,char_Contro+0*48);     
+                                display_map_xy(2,vv,16,24,char_Contro+0*48);
                                 display_map_xy(2+1*16,vv,16,24,char_Contro+1*48);
                                 display_map_xy(2+2*16,vv,16,24,char_Contro+2*48);
                                 display_map_xy(2+3*16,vv,16,24,char_Contro+3*48);
-                                display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);                          
+                                display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);
                                 break;
                      case 0x14:                            //stop+login
                      case 0x40:                            //◊‘∂ØÀÕ–≈
-                     case 0x01:                              //VENT							
+                     case 0x01:                              //VENT
                      case 0x0C:                         //open+stop
-                     case 0x06:                       //close+stop  
-                     case 0x0A:                       //close+OPEN 
+                     case 0x06:                       //close+stop
+                     case 0x0A:                       //close+OPEN
                      case 0x09:                       //vent+OPEN
-                     case 0x03:                       //vent+close 
+                     case 0x03:                       //vent+close
                      default:
                                 display_map_xy(0,vv,2,24,char_Contro+13*48);
-                                display_map_xy(2,vv,16,24,char_Contro+13*48);     
+                                display_map_xy(2,vv,16,24,char_Contro+13*48);
                                 display_map_xy(2+1*16,vv,16,24,char_Contro+13*48);
                                 display_map_xy(2+2*16,vv,16,24,char_Contro+13*48);
                                 display_map_xy(2+3*16,vv,16,24,char_Contro+13*48);
-                                display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);                         
+                                display_map_xy(2+4*16,vv,16,24,char_Contro+13*48);
                                 break;
-                 }       
-      
+                 }
+
     }
-    
-        
+
+
 }
 
 
 //***********************************************************************************
 void LCD_display_argos_rssi(unsigned int m, unsigned char y){
-  unsigned char i,x;  
+  unsigned char i,x;
   unsigned char char_rssi[3]="dBm";
   unsigned char char_rssi1[4]="RS";
   if(m>1300)m=1300;
   if(lcd_rssi!=m){
-    for(i=4;i>=1;i--){  
+    for(i=4;i>=1;i--){
       x=m%10;
       m=m/10;
       if(i==1){
         if(x==0){
           display_map_xy(86,y,5,8,char_Small);
-          display_map_xy(86+i*6,y,5,8,char_Small+0x0d*5);           
-        }   
+          display_map_xy(86+i*6,y,5,8,char_Small+0x0d*5);
+        }
         else {
           display_map_xy(86,y,5,8,char_Small+0x0d*5);
-          display_map_xy(86+i*6,y,5,8,char_Small+(0x10+x)*5);          
+          display_map_xy(86+i*6,y,5,8,char_Small+(0x10+x)*5);
         }
       }
       else if(i==4){if(x>=6)m=m+1;}
       else  display_map_xy(86+i*6,y,5,8,char_Small+(0x10+x)*5);
     }
-    
+
 /*
     display_map_xy(86+24,0,5,8,char_Small+0x44*5);      //œ‘ ædBm
     display_map_xy(86+24+1*6,0,5,8,char_Small+0x22*5);
@@ -517,40 +517,212 @@ void LCD_display_argos_rssi(unsigned int m, unsigned char y){
 
 	for(i=0;i<3;i++)
     display_map_xy(86+24+i*6,y,5,8,char_Small+(char_rssi[i]-0x20)*5);     //dBm
-	
+
     lcd_rssi=m;
   }
 }
 
 
+void display_rx_databuff(u8 *data,u8 len,u8 pack,u8 ynum)
+{
+    u8 i = 0; u8 y = 0;u8 cy = 0;
+    if(pack == 0)  return;
+    if(pack > 3)  pack = 3;
+    lcd_clear(1);
+    while(pack--)
+    {
+        display_map_xy(0,cy+y*16+1,5,8,char_Small+(hex_asc((ynum+y+1)%16)-0x20)*5);
+        display_map_xy(6,cy+y*16+1,5,8,char_Small+14*5);//.
+
+        display_map_xy(12,cy+y*16+1,5,8,char_Small+(hex_asc(data[0+y*12]/16)-0x20)*5);
+        display_map_xy(18,cy+y*16+1,5,8,char_Small+(hex_asc(data[0+y*12]%16)-0x20)*5);
+        for(i=0;i<7;i++)
+        {
+            display_map_xy((i+4)*6+i*6+i+3,cy+y*16+1,5,8,char_Small+(hex_asc(data[i+1+y*12]/16)-0x20)*5);
+            display_map_xy((i+5)*6+i*6+i+3,cy+y*16+1,5,8,char_Small+(hex_asc(data[i+1+y*12]%16)-0x20)*5);
+        }
+        display_map_xy(12,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[8+y*12]/16)-0x20)*5);
+        display_map_xy(17+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[8+y*12]%16)-0x20)*5);
+        display_map_xy(23+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[9+y*12]/16)-0x20)*5);
+        display_map_xy(31+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[9+y*12]%16)-0x20)*5);
+        display_map_xy(37+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[10+y*12]/16)-0x20)*5);
+        display_map_xy(45+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[10+y*12]%16)-0x20)*5);
+        display_map_xy(51+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[11+y*12]/16)-0x20)*5);
+        display_map_xy(59+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[11+y*12]%16)-0x20)*5);
+        y++;
+    }
+    display_Freq(PROFILE_CH_FREQ_32bit_200002EC);
+    display_RxNum(Rx_Num);
+}
+
+void display_RxNum(u8 num)
+{
+    u16 x_cnt = 0;
+    u8 x_num = 0;
+    u8 i = 0;u8 x = 70;
+    display_map_xy(x+24,58,5,8,char_Small+50*5);//R
+    display_map_xy(x+30,58,5,8,char_Small+56*5);//X
+    //display_map_xy(x+12,58,5,8,char_Small+0*5);//space key
+    //display_map_xy(x+18,58,5,8,char_Small+46*5);//N
+    //display_map_xy(x+24,58,5,8,char_Small+53*5);//U
+    //display_map_xy(x+30,58,5,8,char_Small+45*5);//M
+    display_map_xy(x+36,58,5,8,char_Small+26*5);//:
+    x_cnt = num;
+    for(i=2;i>0;i--)
+    {
+        x_num = x_cnt % 10;
+        x_cnt = x_cnt / 10;
+        display_map_xy(x+42+5*i-(5-i),58,5,8,char_Small+(16+x_num)*5);
+    }
+}
+
+void display_Freq(u32 freq)
+{
+    u32 num = 0;u8 data = 0;u8 i = 0;
+
+    display_map_xy(i,58,5,8,char_Small+38*5);//F
+    display_map_xy(i+6,58,5,8,char_Small+50*5);//R
+    display_map_xy(i+12,58,5,8,char_Small+37*5);//E
+    display_map_xy(i+18,58,5,8,char_Small+49*5);//Q
+    display_map_xy(i+24,58,5,8,char_Small+26*5);//:
+
+    num = freq/1000;
+    for(i=0;i<6;i++)
+    {
+        data = num%10;
+        num = num/10;
+        if(i<3)
+            display_map_xy(30+(6-i)*6,58,5,8,char_Small+(hex_asc(data)-0x20)*5);
+        else
+            display_map_xy(30+(5-i)*6,58,5,8,char_Small+(hex_asc(data)-0x20)*5);
+    }
+    display_map_xy(30+3*6,58,5,8,char_Small+('.'-0x20)*5);
+}
+
+u8 sw = 0;
+void delay_ms(u8 ms);
+void key_freq(void)
+{
+    if((KEY_SW4_close==0) && (FLAG_KEY_SW4_close==0))
+    {
+        delay_ms(50);
+        if((KEY_SW4_close==0) && (FLAG_KEY_SW4_close==0))
+        {
+            FLAG_KEY_SW4_close=1;
+            switch(sw)
+            {
+                case 0:
+                    PROFILE_CH_FREQ_32bit_200002EC = 429175000;
+                    sw = 1;
+                    break;
+
+                case 1:
+                    PROFILE_CH_FREQ_32bit_200002EC = 429200000;
+                    sw = 2;
+                    break;
+
+                case 2:
+                    PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+                    sw = 0;
+                    break;
+
+            }
+            PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
+            PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
+            PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;
+            ADF7030Init();
+            lcd_clear(1);
+            display_Freq(PROFILE_CH_FREQ_32bit_200002EC);
+            display_RxNum(0);
+        }
+    }
+	else if(KEY_SW4_close==1) FLAG_KEY_SW4_close=0;
+
+    if((KEY_SW3_stop==0) && (FLAG_KEY_SW3_stop==0))
+    {
+        delay_ms(50);
+        if((KEY_SW3_stop==0) && (FLAG_KEY_SW3_stop==0))
+        {
+            FLAG_KEY_SW3_stop=1;
+            if(flag_rx_end == 1 && (ipage != 0 || ipack != 0))
+            {
+                if(ipage == 1)
+                {
+                    display_rx_databuff(&recv_buff[36],12,ipack,3);
+                    return;
+                }
+                if(ix < ipage-1)
+                {
+                    ix++;
+                    display_rx_databuff(&recv_buff[36*ix],12,3,ix*3);
+                    return;
+                }
+                if(ix >= ipage-1)
+                {
+                    ix = ipage-1;
+                    if(ipack != 0)
+                    {
+                        ix = ix+1;
+                        display_rx_databuff(&recv_buff[36*(ix)],12,ipack,(ix)*3);
+                    }
+                    return;
+                }
+            }
+        }
+    }
+    else if(KEY_SW3_stop==1) FLAG_KEY_SW3_stop=0;
+
+    if((KEY_SW2_open==0) && (FLAG_KEY_SW2_open==0))
+    {
+        delay_ms(50);
+        if((KEY_SW2_open==0) && (FLAG_KEY_SW2_open==0))
+        {
+            FLAG_KEY_SW2_open=1;
+            if(flag_rx_end == 1 && (ipage != 0 || ipack != 0))
+            {
+                if(ipage == 1)
+                {
+                    display_rx_databuff(&recv_buff[0],12,3,0);
+                    return;
+                }
+                if(ix > 0)
+                {
+                    ix--;
+                    display_rx_databuff(&recv_buff[36*(ix)],12,3,(ix)*3);
+                }
+            }
+        }
+    }
+    else if(KEY_SW2_open==1) FLAG_KEY_SW2_open=0;
+}
 
 const unsigned char char_Large_L11_H24[]={
   /*--  øÌ∂»x∏ﬂ∂»=11x24  --*/
                                                                                 // ASCII¬Î(HEX)  ◊÷∑˚
   0xE0,0xF8,0xFC,0x3E,0x0E,0x0E,0x0E,0xBE,0xFC,0xF8,0xE0,0xFF,0xFF,0xFF,0xC0,0xF0,     //30       0
   0x7C,0x1E,0x07,0xFF,0xFF,0xFF,0x0F,0x3F,0x7F,0xFB,0xE0,0xE0,0xE0,0xF8,0x7F,0x3F,
-  0x0F,   
-  
+  0x0F,
+
   0x00,0x70,0x70,0x78,0xFE,0xFE,0xFE,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,     //31       1
   0xFF,0xFF,0x00,0x00,0x00,0x00,0x00,0xE0,0xE0,0xE0,0xFF,0xFF,0xFF,0xE0,0xE0,0xE0,
   0x00,
-  
+
   0xE0,0xF8,0xFC,0x3E,0x0E,0x0E,0x0E,0x3E,0xFC,0xF8,0xE0,0x00,0x00,0x00,0x80,0xC0,     //32       2
   0xF0,0xF8,0x3E,0x1F,0x0F,0x03,0xE0,0xF8,0xFE,0xFF,0xE7,0xE1,0xE0,0xE0,0xE0,0xE0,
   0xE0,
-  
+
   0xE0,0xF8,0xFC,0x3E,0x0E,0x0E,0x0E,0x3E,0xFC,0xF8,0xE0,0x01,0x01,0x01,0x00,0x38,     //33      3
   0x38,0x38,0x7C,0xFF,0xEF,0x87,0x0F,0x3F,0x7F,0xF8,0xE0,0xE0,0xE0,0xF8,0x7F,0x3F,
   0x0F,
-  
+
   0x00,0x00,0x00,0xC0,0xF0,0xFC,0xFE,0xFE,0xFE,0x00,0x00,0xC0,0xF8,0xFF,0x3F,0x07,     //34      4
   0x00,0xFF,0xFF,0xFF,0x00,0x00,0x0F,0x0F,0x0F,0x0E,0x0E,0x0E,0xFF,0xFF,0xFF,0x0E,
   0x0E,
-  
+
   0xFE,0xFE,0xFE,0x0E,0x0E,0x0E,0x0E,0x0E,0x0E,0x0E,0x0E,0x1F,0x1F,0x1F,0x1C,0x0E,    //35      5
   0x0E,0x0E,0x3E,0xFC,0xF8,0xE0,0x0F,0x3F,0x7F,0xF8,0xE0,0xE0,0xE0,0xF8,0x7F,0x3F,
   0x0F,
-  
+
   0xE0,0xF8,0xFC,0x3E,0x1E,0x0E,0x0E,0x0E,0x0E,0x0E,0x00,0xFF,0xFF,0xFF,0x3C,0x0E,    //36      6
   0x0E,0x0E,0x3E,0xFC,0xF8,0xE0,0x0F,0x3F,0x7F,0xF8,0xE0,0xE0,0xE0,0xF8,0x7F,0x3F,
   0x0F,
@@ -558,23 +730,23 @@ const unsigned char char_Large_L11_H24[]={
   0x7E,0x7E,0x7E,0x0E,0x0E,0x0E,0x0E,0x8E,0xFE,0xFE,0xFE,0x00,0x00,0x00,0x00,0x00,    //37     7
   0xE0,0xFC,0xFF,0x3F,0x0F,0x00,0x00,0x00,0x00,0x00,0xFE,0xFF,0xFF,0x03,0x00,0x00,
   0x00,
-  
+
   0xE0,0xF8,0xFC,0x3E,0x0E,0x0E,0x0E,0x3E,0xFC,0xF8,0xE0,0x87,0xEF,0xFF,0x7C,0x38,    //38     8
   0x38,0x38,0x7C,0xFF,0xEF,0x87,0x0F,0x3F,0x7F,0xF8,0xE0,0xE0,0xE0,0xF8,0x7F,0x3F,
   0x0F,
-  
+
   0xE0,0xF8,0xFC,0x3E,0x0E,0x0E,0x0E,0x3E,0xFC,0xF8,0xE0,0x0F,0x3F,0x7F,0xF8,0xE0,    //39     9
   0xE0,0xE0,0xF8,0xFF,0xFF,0xFF,0x00,0xE0,0xE0,0xE0,0xE0,0xE0,0xF0,0xF8,0x7F,0x3F,
   0x0F,
-  
+
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,    //2E     .
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x70,0xF8,0xF8,0xF8,0x70,0x00,0x00,0x00,
   0x00,
-    
+
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x70,0x70,0x70,0x70,    //2D     -
   0x70,0x70,0x70,0x70,0x70,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
   0x00,
-  
+
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,   //      «Â∆¡
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
   0x00
@@ -603,7 +775,7 @@ const unsigned char char_ID[]={                                               //
 0x10,0x1F,0x10,0x10,0x1F,0x10,0x10,0x10,0x10,0x10,0x10,0x18,0x06,0x00,0x00,0x01,
 0x06,0x08,0x10,0x10,0x10,0x10,0x0C,0x03,0x00,0x10,0x1F,0x10,0x00,0x00,0x00,0x00,
 0x03,0x14,0x18,0x10,0x10,0x1F,0x10,0x10,0x10,0x10,0x10,0x10,0x18,0x06,0x00,0x10,
-0x1F,0x10,0x00,0x00,0x00,0x00,0x03,0x0C,0x10,0x10  
+0x1F,0x10,0x00,0x00,0x00,0x00,0x03,0x0C,0x10,0x10
 };
 
 
@@ -713,45 +885,45 @@ const unsigned char char_company[]={                                            
 //“‘œ¬ «◊÷ø‚
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&//
 const unsigned char char_Small[] ={
-/*--  øÌ∂»x∏ﬂ∂»=5x8  --*/   
+/*--  øÌ∂»x∏ﬂ∂»=5x8  --*/
                           // ASCII¬Î(HEX)  ◊÷∑˚
   0x00,0x00,0x00,0x00,0x00,       //20      ø’∞◊
   0x00,0x00,0xBE,0x00,0x00,       //21       £°
   0x00,0x00,0x00,0x00,0x00,       //22       °∞       ø’
-  0x00,0x00,0x00,0x00,0x00,       //23       #        ø’ 
+  0x00,0x00,0x00,0x00,0x00,       //23       #        ø’
   0x2A,0x2C,0xF8,0x2C,0x2A,       //24      £§
-  0x00,0x00,0x00,0x00,0x00,       //25       %        ø’  
-  0x00,0x00,0x00,0x00,0x00,       //26       &        ø’ 
+  0x00,0x00,0x00,0x00,0x00,       //25       %        ø’
+  0x00,0x00,0x00,0x00,0x00,       //26       &        ø’
   0x00,0xB0,0x70,0x00,0x00,       //27       £¨
   0x00,0x38,0x44,0x82,0x00,       //28       (
   0x00,0x82,0x44,0x38,0x00,       //29       )
   0x28,0x10,0x7C,0x10,0x28,       //2A       *
   0x10,0x10,0x7C,0x10,0x10,       //2B       +
   0x00,0x0C,0x0A,0x00,0x00,       //2C       '
-  0x10,0x10,0x10,0x10,0x10,       //2D       -   
+  0x10,0x10,0x10,0x10,0x10,       //2D       -
   0x00,0xC0,0xC0,0x00,0x00,       //2E       .
   0x40,0x20,0x10,0x08,0x04,       //2F       /
-    
-  0x7C,0xA2,0x92,0x8A,0x7C,       //30        0    
+
+  0x7C,0xA2,0x92,0x8A,0x7C,       //30        0
   0x00,0x84,0xFE,0x80,0x00,       //31        1
   0x84,0xC2,0xA2,0x92,0x8C,       //32        2
   0x42,0x82,0x8A,0x96,0x62,       //33        3
   0x30,0x28,0x24,0xFE,0x20,       //34        4
   0x4E,0x8A,0x8A,0x8A,0x72,       //35        5
-  0x78,0x94,0x92,0x92,0x60,       //36        6 
+  0x78,0x94,0x92,0x92,0x60,       //36        6
   0x06,0x02,0xE2,0x12,0x0E,       //37        7
   0x6C,0x92,0x92,0x92,0x6C,       //38        8
-  0x0C,0x92,0x92,0x52,0x3C,       //39        9 
+  0x0C,0x92,0x92,0x52,0x3C,       //39        9
 
   0x00,0x6C,0x6C,0x00,0x00,       //3A        :
   0x00,0xAC,0x6C,0x00,0x00,       //3B        ;
   0x10,0x28,0x44,0x82,0x00,       //3C        <
   0x28,0x28,0x28,0x28,0x28,       //3D        =
   0x00,0x82,0x44,0x28,0x10,       //3E        >
-  0x00,0x00,0x00,0x00,0x00,       //3F        ?        ø’ 
+  0x00,0x00,0x00,0x00,0x00,       //3F        ?        ø’
   0x64,0x92,0xF2,0x82,0x7C,       //40        @
-  
-  0xF8,0x24,0x22,0x24,0xF8,       //41        A  
+
+  0xF8,0x24,0x22,0x24,0xF8,       //41        A
   0xFE,0x92,0x92,0x92,0x6C,       //42        B
   0x7C,0x82,0x82,0x82,0x44,       //43        C
   0xFE,0x82,0x82,0x44,0x38,       //44        D
@@ -777,14 +949,14 @@ const unsigned char char_Small[] ={
   0xC6,0x28,0x10,0x28,0xC6,       //58        X
   0x0E,0x10,0xE0,0x10,0x0E,       //59        Y
   0xC2,0xA2,0x92,0x8A,0x86,       //5A        Z
-  
+
   0x00,0xFE,0x82,0x82,0x00,       //5B        [
-  0x04,0x08,0x10,0x20,0x40,       //5C      ∑˚∫≈∑¥–±∏‹   
+  0x04,0x08,0x10,0x20,0x40,       //5C      ∑˚∫≈∑¥–±∏‹
   0x00,0x82,0x82,0xFE,0x00,       //5D        ]
   0x08,0x04,0x02,0x04,0x08,       //5E        ^
   0x80,0x80,0x80,0x80,0x80,       //5F        _
-  0x00,0x00,0x00,0x00,0x00,       //60        '        ø’   
-  
+  0x00,0x00,0x00,0x00,0x00,       //60        '        ø’
+
   0x40,0xA8,0xA8,0xA8,0xF0,       //61       a
   0xFE,0x90,0x88,0x88,0x70,       //62       b
   0x70,0x88,0x88,0x88,0x50,       //63       c
@@ -810,16 +982,16 @@ const unsigned char char_Small[] ={
   0x78,0x80,0x60,0x80,0x78,       //77       w
   0x88,0x50,0x20,0x50,0x88,       //78       x
   0x18,0xA0,0xA0,0xA0,0x78,       //79       y
-  0x88,0xC8,0xA8,0x98,0x88,       //7A       z 
+  0x88,0xC8,0xA8,0x98,0x88,       //7A       z
   0xFE,0x7C,0x38,0x10,0x00,       //7B       »˝π˙
-  
-  0xF8,0x24,0x22,0x24,0xF8,       //7c        A  
+
+  0xF8,0x24,0x22,0x24,0xF8,       //7c        A
   0xFE,0x92,0x92,0x92,0x6C,       //7d        B
   0x7C,0x82,0x82,0x82,0x44,       //7e        C
   0xFE,0x82,0x82,0x44,0x38,       //7f        D
   0xFE,0x92,0x92,0x92,0x82,       //80        E
-  0xFE,0x12,0x12,0x12,0x02,       //81        F   
-  0x28,0x10,0x7C,0x10,0x28        //82        *  
+  0xFE,0x12,0x12,0x12,0x02,       //81        F
+  0x28,0x10,0x7C,0x10,0x28        //82        *
 };
 
 const unsigned char char_Medium[]={
@@ -899,14 +1071,14 @@ const unsigned char char_Contro[]={
 //
 ///*--  Œƒ◊÷:  E  --*/
 ///*--  ÀŒÃÂ12;  ¥À◊÷ÃÂœ¬∂‘”¶µƒµ„’ÛŒ™£∫øÌx∏ﬂ=8x16   --*/
-//0x08,0xF8,0x88,0x88,0xE8,0x08,0x10,0x00,0x20,0x3F,0x20,0x20,0x23,0x20,0x18,0x00,  
-//  
+//0x08,0xF8,0x88,0x88,0xE8,0x08,0x10,0x00,0x20,0x3F,0x20,0x20,0x23,0x20,0x18,0x00,
+//
 ///*--  Œƒ◊÷:  ø’  --*/
 //0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 
 
 
-  
+
 //// O(0) P(1) E(2)
 //// N(3) S(4) T(5)
 //// O(6) P(7) C(8)
@@ -940,10 +1112,10 @@ const unsigned char char_Contro[]={
 //0xF0,0xF0,0x90,0x90,0x90,0x10,0x00,0x00,0x0F,0x0F,0x08,0x08,0x08,0x08,0x00,0x00,/*"E",12*/
 ///*--  Œƒ◊÷:  ø’  --*/
 //0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-  
-  
-  
-  
+
+
+
+
 // O(0) P(1) E(2)
 // N(3) S(4) T(5)
 // O(6) P(7) C(8)
@@ -1000,7 +1172,7 @@ const unsigned char char_Contro[]={
 
 0x00,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0x00,0x00,0x00,0x00,0x00,
 0x00,0xFF,0xFF,0xFF,0x18,0x18,0x18,0x18,0x18,0x18,0x00,0x00,0x00,0x00,0x00,0x00,
-0x00,0x07,0x07,0x07,0x06,0x06,0x06,0x06,0x06,0x06,0x06,0x06,0x00,0x00,0x00,0x00,/*"E",12*/  
+0x00,0x07,0x07,0x07,0x06,0x06,0x06,0x06,0x06,0x06,0x06,0x06,0x00,0x00,0x00,0x00,/*"E",12*/
 
 /*--  Œƒ◊÷:  ø’  --*/
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -1022,8 +1194,8 @@ const unsigned char char_RSSI[]={
 
 
 const unsigned char char_rssi[]={
-/*--  ÂÆΩÂ∫¶xÈ´òÂ∫¶=71x8  --*/                                                            //ËøõÂ∫¶Êù°     
-  
+/*--  ÂÆΩÂ∫¶xÈ´òÂ∫¶=71x8  --*/                                                            //ËøõÂ∫¶Êù° 
+
 0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,       //12
 0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,
 0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,
@@ -1049,7 +1221,7 @@ const unsigned char char_rssi[]={
 0x80,0x80,0x80,0x80,0x80,0x80,0x80,
 
 0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,       //8
-0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8, 
+0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,
 0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,0xB8,0xB8,0xB8,0xB8,0xB8,0x80,
 0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,
 0x80,0x80,0x80,0x80,0x80,0x80,0x80,

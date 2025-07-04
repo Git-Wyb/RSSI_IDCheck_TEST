@@ -35,47 +35,50 @@ UINT8 ACKBack_LEN=0;
 unsigned int U1AckTimer = 0;
 
 //********************************************
-void UART1_INIT(void)
+void UART1_INIT(u8 mode)
 {
-#ifdef Using_UART
-	unsigned int baud_div = 0;
-	SYSCFG_RMPCR1_USART1TR_REMAP = 0;
-	USART1_CR1_bit.M = 0;   //1
-	USART1_CR1_bit.PCEN = 0;  //1
-	USART1_CR1_bit.PS = 0;  //1
-	USART1_CR2_bit.TIEN = 0;
-	USART1_CR2_bit.TCIEN = 0;
-	USART1_CR2_bit.RIEN = 1;
-	USART1_CR2_bit.ILIEN = 0;
-	USART1_CR2_bit.TEN = 1;
-	USART1_CR2_bit.REN = 1;
+    if(mode != 0)
+    {
+        flag_uart_state = 1;
+        unsigned int baud_div = 0;
+        SYSCFG_RMPCR1_USART1TR_REMAP = 0;
+        USART1_CR1_bit.M = 0;   //1
+        USART1_CR1_bit.PCEN = 0;  //1
+        USART1_CR1_bit.PS = 0;  //1
+        USART1_CR2_bit.TIEN = 0;
+        USART1_CR2_bit.TCIEN = 0;
+        USART1_CR2_bit.RIEN = 1;
+        USART1_CR2_bit.ILIEN = 0;
+        USART1_CR2_bit.TEN = 1;
+        USART1_CR2_bit.REN = 1;
 
-	//	USART1_CR3 = 0; // 1个停止位
-	//	USART1_CR4 = 0;
-	//	USART1_CR5 = 0x00;  //0x08;						// 半双工模�?
-	/*设置波特�?*/
-	baud_div = 16000000 / 115200; /*求出分频因子*/   //9600
-	USART1_BRR2 = baud_div & 0x0f;
-	USART1_BRR2 |= ((baud_div & 0xf000) >> 8);
-	USART1_BRR1 = ((baud_div & 0x0ff0) >> 4); /*先给BRR2赋�?? �?后再设置BRR1*/
+        //	USART1_CR3 = 0; // 1个停止位
+        //	USART1_CR4 = 0;
+        //	USART1_CR5 = 0x00;  //0x08;						// 半双工模�?
+        /*设置波特�?*/
+        baud_div = 16000000 / 9600; /*求出分频因子*/   //9600
+        USART1_BRR2 = baud_div & 0x0f;
+        USART1_BRR2 |= ((baud_div & 0xf000) >> 8);
+        USART1_BRR1 = ((baud_div & 0x0ff0) >> 4); /*先给BRR2赋�?? �?后再设置BRR1*/
+    }
+        //	USART1_BRR2 = 0x03; // 设置波特�?9600
+        //	USART1_BRR1 = 0x68; // 3.6864M/9600 = 0x180
+        //16.00M/9600 = 0x683
+        //USART1_CR2 = 0x08;	// 允许发�??
+        //USART1_CR2 = 0x24;
+        //Send_char(0xa5);
+    else
+    {
+        flag_uart_state = 0;
+        UART1_end();
+        KEY_SW2_open_DDR= Input;
+        KEY_SW2_open_CR1= Pull_up;
+        KEY_SW2_open_CR2 =InterruptDisable;
 
-	//	USART1_BRR2 = 0x03; // 设置波特�?9600
-	//	USART1_BRR1 = 0x68; // 3.6864M/9600 = 0x180
-	//16.00M/9600 = 0x683
-	//USART1_CR2 = 0x08;	// 允许发�??
-	//USART1_CR2 = 0x24;
-	//Send_char(0xa5);
-#else
-KEY_SW2_open_DDR= Input;
-KEY_SW2_open_CR1= Pull_up;
-KEY_SW2_open_CR2 =InterruptDisable;
-
-KEY_SW3_stop_DDR= Input;
-KEY_SW3_stop_CR1= Pull_up;
-KEY_SW3_stop_CR2=InterruptDisable;
-
-#endif
-	
+        KEY_SW3_stop_DDR= Input;
+        KEY_SW3_stop_CR1= Pull_up;
+        KEY_SW3_stop_CR2=InterruptDisable;
+    }
 }
 void UART1_end(void)
 { //
@@ -142,7 +145,6 @@ void Send_String(unsigned char *string)
 }
 void Send_Data(unsigned char *P_data, unsigned int length)
 { // 发�?�字符串
-#ifdef Using_UART
 	unsigned int i = 0;
 	TXD1_enable; // 允许发�??
 	for (i = 0; i < length; i++)
@@ -154,8 +156,6 @@ void Send_Data(unsigned char *P_data, unsigned int length)
 	while (!USART1_SR_TC)
 		;		 // 等待完成发�??
 	RXD1_enable; // 允许接收及其中断
-				 //	BIT_SIO = 0;							// 标志
-#endif				 
 }
 
 /***********************************************************************/
@@ -292,7 +292,7 @@ void PC_PRG(void) // 串口命令
 	}
 }
 void ReceiveFrame(UINT8 Cache)
-{  
+{
 	switch (UartStatus)
 	{
 	case FrameHeadSataus:
@@ -305,7 +305,7 @@ void ReceiveFrame(UINT8 Cache)
 			(UART_DATA_buffer[1] != FrameHead)
                           &&(UART_DATA_buffer[2] != FrameHead)
                             &&(UART_DATA_buffer[3] != FrameHead)) */
-    if (UART_DATA_buffer[0] == FrameHead)                        
+    if (UART_DATA_buffer[0] == FrameHead)
 		{
 			U1Statues = ReceivingStatues;
 			UartStatus++;
@@ -337,11 +337,11 @@ void ReceiveFrame(UINT8 Cache)
 		//        Receiver_LED_OUT_INV = !Receiver_LED_OUT_INV;
 		U1Statues = ReceiveDoneStatues;
 		U1AckTimer = U1AckDelayTime;
-	}  
+	}
 }
 
 void OprationFrame(void)
-{ 
+{
   u16 check_sum=0,n;
   u8 i=0;
   uni_rom_id xn;
@@ -370,7 +370,7 @@ void OprationFrame(void)
 				  for(i=UART_DATA_buffer[3]-6;i<8;i++)Uart_Struct_DATA_Packet_Contro.data[i/2].uc[i%2]=0x00;
                 }
                 FLAG_APP_TX_fromUART=1;
-                
+
 		        ACKBack[0] = FrameHead;
                 ACKBack[1] = Uart_Fremo_NO;
                 ACKBack[2] = 0x80;
@@ -382,7 +382,7 @@ void OprationFrame(void)
                 ACKBack[8] = 0x00;
                 ACKBack_LEN=9;
            }
-		   else 
+		   else
 		   	U1Statues = IdelStatues;   //不返回ACK
 		  break;
 	  case 0x10:
@@ -404,8 +404,8 @@ void OprationFrame(void)
 		  ACKBack[3] = 2;
 		  ACKBack[4] = 0x00;
 		  ACKBack[5] = 0x00;
-		  ACKBack_LEN=6;		  
-		  break;	
+		  ACKBack_LEN=6;
+		  break;
 	  case 0x11:
 	  	  if(UART_DATA_buffer[3]==1)
 	  	  	{
@@ -415,22 +415,22 @@ void OprationFrame(void)
 			  	FLAG_ID_Login_FromUART=1;
 	  	  	}
 		  U1Statues = IdelStatues;   //不返回ACK
-		  break;			  
+		  break;
 	  case 0x60:
 		  		ACKBack[0] = FrameHead;
                 ACKBack[1] = Uart_Fremo_NO;
                 ACKBack[2] = 0xE0;
-                ACKBack[3] = 0x00;    
+                ACKBack[3] = 0x00;
                 ACKBack_LEN=4;
-		  break;	
+		  break;
 	  case 0x61:
 		  Power_ON_sendVer();
-		  break;		  
+		  break;
 	  }
    UART_DATA_buffer[0] = 0x00;
 	 UART_DATA_buffer[1] = 0x00;
    UART_DATA_buffer[2] = 0x00;
-	 UART_DATA_buffer[3] = 0x00;    
+	 UART_DATA_buffer[3] = 0x00;
 }
 
 void Power_ON_sendVer(void)
@@ -439,7 +439,7 @@ void Power_ON_sendVer(void)
      		ACKBack[0] = FrameHead;
                 ACKBack[1] = Uart_Fremo_NO;
                 ACKBack[2] = 0xE1;
-                ACKBack[3] = 7;  
+                ACKBack[3] = 7;
                 for(i=0;i<7;i++)
                    ACKBack[i+4]=Soft_Version[i];
                 ACKBack_LEN=11;
@@ -469,8 +469,8 @@ void wireless_Receive_SendUart(void)
     u16 check_sum=0;
     static u32 Last_DATA_Packet_ID=0;
     static u8 Last_DATA_Packet_Control=0;
-    
-    
+
+
     if((U1Statues!= ACKingStatues)&&(flag_ID_Receiver_sendUART==1))
     {
       flag_ID_Receiver_sendUART=0;
@@ -483,8 +483,8 @@ void wireless_Receive_SendUart(void)
 	      {
             lcd_DATA_Packet_ID=DATA_Packet_ID;
 			lcd_DATA_Packet_Control=DATA_Packet_Control;
-            flag_lcd_id_updata=1; 
-		  
+            flag_lcd_id_updata=1;
+
 		    data[0] = FrameHead;
 	        data[1] = 0;//Uart_Fremo_NO;  //受信时Fremo�?0
 	        data[2] = 0x81;
@@ -501,7 +501,7 @@ void wireless_Receive_SendUart(void)
 	        data[8]=check_sum%256;
 	        data[9]=check_sum/256;
 	        Send_Data(data, 10);
-	        
+
 	        Last_DATA_Packet_ID=DATA_Packet_ID;
 	        Last_DATA_Packet_Control=DATA_Packet_Control;
 	        Time_Receive_gap=720;
@@ -522,20 +522,20 @@ void wireless_Receive_SendUart(void)
 		       (Time_Receive_gap==0))
 		       )
 	      {
-       
+
             lcd_DATA_Packet_ID=DATA_Packet_ID;
             flag_lcd_id_updata=1;
-		  
+
 		    data[0] = FrameHead;
 	        data[1] = 0;//Uart_Fremo_NO;  //受信时Fremo�?0
 	        data[2] = 0x81;
-			
+
 			if(Struct_DATA_Packet_Contro.Fno_Type.UN.type==1)
 				length=3;
 			else length=8;
 			lcd_length_Struct_DATA_Packet_Contro=length;
 	        data[3] = length+6;
-			
+
 	        xn.IDL=DATA_Packet_ID;
 	        data[4]=xn.IDB[3];
 	        check_sum+=data[4];
@@ -545,26 +545,26 @@ void wireless_Receive_SendUart(void)
 	        check_sum+=data[6];
 
 			data[7]=Struct_DATA_Packet_Contro.Fno_Type.byte;
-	            check_sum+=data[7];	
-			lcd_Struct_DATA_Packet_Contro[0]=data[7];	
+	            check_sum+=data[7];
+			lcd_Struct_DATA_Packet_Contro[0]=data[7];
 
 			for (i = 0; i < length; i++)
 			{
 				data[8+i]=Struct_DATA_Packet_Contro.data[i/2].uc[i%2];
 				check_sum+=data[8+i];
 				lcd_Struct_DATA_Packet_Contro[1+i]=data[8+i];
-			}				
+			}
 	        data[8+i]=check_sum%256;
-	        data[9+i]=check_sum/256;				
+	        data[9+i]=check_sum/256;
 
 			//if(Struct_DATA_Packet_Contro.Fno_Type.UN.type==1)
 	          Send_Data(data, length+10);
-	        
+
 	        Last_DATA_Packet_ID=DATA_Packet_ID;
 	        Last_Struct_DATA_Packet_Contro=Struct_DATA_Packet_Contro;
 	        Time_Receive_gap=300;
-	      }	  
+	      }
 	  }
-	  
+
     }
 }

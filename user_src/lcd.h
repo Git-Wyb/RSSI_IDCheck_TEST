@@ -17,10 +17,14 @@ void display_map_xy(unsigned char x,unsigned char y,unsigned char l,unsigned cha
 void lcd_clear(unsigned char data1) ;
 void lcd_desplay(void);
 void LCD_display_argos_rssi(unsigned int m, unsigned char y);
+void display_rx_databuff(u8 *data,u8 len,u8 pack,u8 pages);
+void display_RxNum(u8 num);
+void display_Freq(u32 freq);
+void key_freq(void);
 
 extern const unsigned char char_Large_L11_H24[];
 extern const unsigned char char_ID[];
-extern const unsigned char char_ID_CHECKER[]; 
+extern const unsigned char char_ID_CHECKER[];
 extern const unsigned char char_company[];
 
 extern const unsigned char char_Small[];
