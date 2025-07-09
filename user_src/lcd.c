@@ -527,29 +527,76 @@ void display_rx_databuff(u8 *data,u8 len,u8 pack,u8 ynum)
 {
     u8 i = 0; u8 y = 0;u8 cy = 0;
     if(pack == 0)  return;
-    if(pack > 3)  pack = 3;
-    lcd_clear(1);
-    while(pack--)
+    if(len == 12)
     {
-        display_map_xy(0,cy+y*16+1,5,8,char_Small+(hex_asc((ynum+y+1)%16)-0x20)*5);
-        display_map_xy(6,cy+y*16+1,5,8,char_Small+14*5);//.
+        if(pack > 3)  pack = 3;
+        lcd_clear(1);
+        while(pack--)
+        {
+            display_map_xy(0,cy+y*16+1,5,8,char_Small+(hex_asc((ynum+y+1)%16)-0x20)*5);
+            display_map_xy(6,cy+y*16+1,5,8,char_Small+14*5);//.
 
-        display_map_xy(12,cy+y*16+1,5,8,char_Small+(hex_asc(data[0+y*12]/16)-0x20)*5);
-        display_map_xy(18,cy+y*16+1,5,8,char_Small+(hex_asc(data[0+y*12]%16)-0x20)*5);
+            display_map_xy(12,cy+y*16+1,5,8,char_Small+(hex_asc(data[0+y*12]/16)-0x20)*5);
+            display_map_xy(18,cy+y*16+1,5,8,char_Small+(hex_asc(data[0+y*12]%16)-0x20)*5);
+            for(i=0;i<7;i++)
+            {
+                display_map_xy((i+4)*6+i*6+i+3,cy+y*16+1,5,8,char_Small+(hex_asc(data[i+1+y*12]/16)-0x20)*5);
+                display_map_xy((i+5)*6+i*6+i+3,cy+y*16+1,5,8,char_Small+(hex_asc(data[i+1+y*12]%16)-0x20)*5);
+            }
+            display_map_xy(12,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[8+y*12]/16)-0x20)*5);
+            display_map_xy(17+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[8+y*12]%16)-0x20)*5);
+            display_map_xy(23+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[9+y*12]/16)-0x20)*5);
+            display_map_xy(31+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[9+y*12]%16)-0x20)*5);
+            display_map_xy(37+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[10+y*12]/16)-0x20)*5);
+            display_map_xy(45+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[10+y*12]%16)-0x20)*5);
+            display_map_xy(51+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[11+y*12]/16)-0x20)*5);
+            display_map_xy(59+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[11+y*12]%16)-0x20)*5);
+            y++;
+            ClearWDT();
+        }
+    }
+    else if(len == 28)
+    {
+        if(ynum > 8)    ynum = 8;
+
+        lcd_clear(1);
+
+        display_map_xy(0,y*8+1,5,8,char_Small+(hex_asc((ynum+1)%16)-0x20)*5);
+        display_map_xy(6,y*8+1,5,8,char_Small+14*5);//.
+
+        display_map_xy(12,y*8+1,5,8,char_Small+(hex_asc(data[0]/16)-0x20)*5);
+        display_map_xy(18,y*8+1,5,8,char_Small+(hex_asc(data[0]%16)-0x20)*5);
         for(i=0;i<7;i++)
         {
-            display_map_xy((i+4)*6+i*6+i+3,cy+y*16+1,5,8,char_Small+(hex_asc(data[i+1+y*12]/16)-0x20)*5);
-            display_map_xy((i+5)*6+i*6+i+3,cy+y*16+1,5,8,char_Small+(hex_asc(data[i+1+y*12]%16)-0x20)*5);
+            display_map_xy((i+4)*6+i*6+i+3,y*8+1,5,8,char_Small+(hex_asc(data[i+1]/16)-0x20)*5);
+            display_map_xy((i+5)*6+i*6+i+3,y*8+1,5,8,char_Small+(hex_asc(data[i+1]%16)-0x20)*5);
         }
-        display_map_xy(12,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[8+y*12]/16)-0x20)*5);
-        display_map_xy(17+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[8+y*12]%16)-0x20)*5);
-        display_map_xy(23+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[9+y*12]/16)-0x20)*5);
-        display_map_xy(31+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[9+y*12]%16)-0x20)*5);
-        display_map_xy(37+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[10+y*12]/16)-0x20)*5);
-        display_map_xy(45+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[10+y*12]%16)-0x20)*5);
-        display_map_xy(51+3,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[11+y*12]/16)-0x20)*5);
-        display_map_xy(59+1,cy+y*16+8+1,5,8,char_Small+(hex_asc(data[11+y*12]%16)-0x20)*5);
         y++;
+        display_map_xy(12,y*8+1,5,8,char_Small+(hex_asc(data[y*8]/16)-0x20)*5);
+        display_map_xy(18,y*8+1,5,8,char_Small+(hex_asc(data[y*8]%16)-0x20)*5);
+        for(i=0;i<7;i++)
+        {
+            display_map_xy((i+4)*6+i*6+i+3,y*8+1,5,8,char_Small+(hex_asc(data[y*8+i+1]/16)-0x20)*5);
+            display_map_xy((i+5)*6+i*6+i+3,y*8+1,5,8,char_Small+(hex_asc(data[y*8+i+1]%16)-0x20)*5);
+        }
+        ClearWDT();
+        y++;
+        display_map_xy(12,y*8+1,5,8,char_Small+(hex_asc(data[y*8]/16)-0x20)*5);
+        display_map_xy(18,y*8+1,5,8,char_Small+(hex_asc(data[y*8]%16)-0x20)*5);
+        for(i=0;i<7;i++)
+        {
+            display_map_xy((i+4)*6+i*6+i+3,y*8+1,5,8,char_Small+(hex_asc(data[y*8+i+1]/16)-0x20)*5);
+            display_map_xy((i+5)*6+i*6+i+3,y*8+1,5,8,char_Small+(hex_asc(data[y*8+i+1]%16)-0x20)*5);
+        }
+        y++;
+        display_map_xy(12,y*8+1,5,8,char_Small+(hex_asc(data[y*8]/16)-0x20)*5);
+        display_map_xy(17+1,y*8+1,5,8,char_Small+(hex_asc(data[y*8]%16)-0x20)*5);
+        display_map_xy(23+3,y*8+1,5,8,char_Small+(hex_asc(data[y*8+1]/16)-0x20)*5);
+        display_map_xy(31+1,y*8+1,5,8,char_Small+(hex_asc(data[y*8+1]%16)-0x20)*5);
+        display_map_xy(37+3,y*8+1,5,8,char_Small+(hex_asc(data[y*8+2]/16)-0x20)*5);
+        display_map_xy(45+1,y*8+1,5,8,char_Small+(hex_asc(data[y*8+2]%16)-0x20)*5);
+        display_map_xy(51+3,y*8+1,5,8,char_Small+(hex_asc(data[y*8+3]/16)-0x20)*5);
+        display_map_xy(59+1,y*8+1,5,8,char_Small+(hex_asc(data[y*8+3]%16)-0x20)*5);
     }
     display_Freq(PROFILE_CH_FREQ_32bit_200002EC);
     display_RxNum(Rx_Num);
@@ -609,27 +656,53 @@ void key_freq(void)
         if((KEY_SW4_close==0) && (FLAG_KEY_SW4_close==0))
         {
             FLAG_KEY_SW4_close=1;
-            switch(sw)
+            if(Flag_Speed_HighLow == 0)
             {
-                case 0:
-                    PROFILE_CH_FREQ_32bit_200002EC = 429175000;
-                    sw = 1;
-                    break;
+                switch(sw)
+                {
+                    case 0:
+                        PROFILE_CH_FREQ_32bit_200002EC = 429175000;
+                        sw = 1;
+                        break;
 
-                case 1:
-                    PROFILE_CH_FREQ_32bit_200002EC = 429200000;
-                    sw = 2;
-                    break;
+                    case 1:
+                        PROFILE_CH_FREQ_32bit_200002EC = 429200000;
+                        sw = 2;
+                        break;
 
-                case 2:
-                    PROFILE_CH_FREQ_32bit_200002EC = 426075000;
-                    sw = 0;
-                    break;
+                    case 2:
+                        PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+                        sw = 0;
+                        break;
 
+                }
+                Radio_Date_Type=1;
+                ADF7030Cfg_pointer=ADF7030Cfg;
+                PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
+                PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
+                PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;
             }
-            PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005A;
-            PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x6400000C;
-            PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;
+            else
+            {
+                switch(sw)
+                {
+                    case 0:
+                        PROFILE_CH_FREQ_32bit_200002EC = 429550000;
+                        sw = 1;
+                        break;
+
+                    case 1:
+                        PROFILE_CH_FREQ_32bit_200002EC = 429350000;
+                        sw = 0;
+                        break;
+
+                }
+                Radio_Date_Type=2;
+                ADF7030Cfg_pointer=ADF7030Cfg_4dot8k;
+                PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005B;
+                PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x64000030;
+                PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100E;
+            }
             ADF7030Init();
             lcd_clear(1);
             display_Freq(PROFILE_CH_FREQ_32bit_200002EC);
@@ -644,28 +717,40 @@ void key_freq(void)
         if((KEY_SW3_stop==0) && (FLAG_KEY_SW3_stop==0))
         {
             FLAG_KEY_SW3_stop=1;
-            if(flag_rx_end == 1 && (ipage != 0 || ipack != 0))
+            if(Flag_Speed_HighLow == 0)
             {
-                if(ipage == 1)
+                if(flag_rx_end == 1 && (ipage != 0 || ipack != 0))
                 {
-                    display_rx_databuff(&recv_buff[36],12,ipack,3);
-                    return;
+                    if(ipage == 1)
+                    {
+                        display_rx_databuff(&recv_buff[36],12,ipack,3);
+                        return;
+                    }
+                    if(ix < ipage-1)
+                    {
+                        ix++;
+                        display_rx_databuff(&recv_buff[36*ix],12,3,ix*3);
+                        return;
+                    }
+                    if(ix >= ipage-1)
+                    {
+                        ix = ipage-1;
+                        if(ipack != 0)
+                        {
+                            ix = ix+1;
+                            display_rx_databuff(&recv_buff[36*(ix)],12,ipack,(ix)*3);
+                        }
+                        return;
+                    }
                 }
-                if(ix < ipage-1)
+            }
+            else
+            {
+                if(flag_rx_end == 1 && (ix < Rx_Num-1))
                 {
                     ix++;
-                    display_rx_databuff(&recv_buff[36*ix],12,3,ix*3);
-                    return;
-                }
-                if(ix >= ipage-1)
-                {
-                    ix = ipage-1;
-                    if(ipack != 0)
-                    {
-                        ix = ix+1;
-                        display_rx_databuff(&recv_buff[36*(ix)],12,ipack,(ix)*3);
-                    }
-                    return;
+                    if(ix > 8) ix = 8;
+                    display_rx_databuff(&recv_buff[28*(ix)],28,Rx_Num,ix);
                 }
             }
         }
@@ -678,17 +763,28 @@ void key_freq(void)
         if((KEY_SW2_open==0) && (FLAG_KEY_SW2_open==0))
         {
             FLAG_KEY_SW2_open=1;
-            if(flag_rx_end == 1 && (ipage != 0 || ipack != 0))
+            if(Flag_Speed_HighLow == 0)
             {
-                if(ipage == 1)
+                if(flag_rx_end == 1 && (ipage != 0 || ipack != 0))
                 {
-                    display_rx_databuff(&recv_buff[0],12,3,0);
-                    return;
+                    if(ipage == 1)
+                    {
+                        display_rx_databuff(&recv_buff[0],12,3,0);
+                        return;
+                    }
+                    if(ix > 0)
+                    {
+                        ix--;
+                        display_rx_databuff(&recv_buff[36*(ix)],12,3,(ix)*3);
+                    }
                 }
-                if(ix > 0)
+            }
+            else
+            {
+                if(flag_rx_end == 1 && ix > 0)
                 {
                     ix--;
-                    display_rx_databuff(&recv_buff[36*(ix)],12,3,(ix)*3);
+                    display_rx_databuff(&recv_buff[28*(ix)],28,Rx_Num,ix);
                 }
             }
         }

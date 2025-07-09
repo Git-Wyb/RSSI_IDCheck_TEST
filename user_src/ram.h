@@ -128,6 +128,7 @@ extern uFLAG FlagLCDUpdate;
 #define LCDUpdateIDFlag FlagLCDUpdate.BIT.Bit0
 #define LCDUpdateRISSFlag FlagLCDUpdate.BIT.Bit1
 #define LCDFirstDisplayFlag FlagLCDUpdate.BIT.Bit2
+#define Flag_Speed_HighLow FlagLCDUpdate.BIT.Bit3
 /**********RSSI*********************/
 extern short RAM_RSSI_AVG;
 extern long RAM_RSSI_SUM;

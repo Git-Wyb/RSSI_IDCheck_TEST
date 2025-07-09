@@ -691,14 +691,30 @@ void SCAN_RECEIVE_PACKET(void)
         X_ERRTimer = 600;
         if(rx_sum < 255)    rx_sum++;
         RX_ANALYSIS(); //处理数据
-        if(sx <= 288)
+        if(Flag_Speed_HighLow == 0)
         {
-            for(si = 0;si < 3; si++)
+            if(sx <= 288)
             {
-                recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si] >> 24);
-                recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si]>>16);
-                recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si]>>8);
-                recv_buff[sx++] = (u8)SPI_Receive_DataForC[si];
+                for(si = 0;si < 3; si++)
+                {
+                    recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si] >> 24);
+                    recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si]>>16);
+                    recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si]>>8);
+                    recv_buff[sx++] = (u8)SPI_Receive_DataForC[si];
+                }
+            }
+        }
+        else
+        {
+            if(sx <= 252)
+            {
+                for(si = 0;si < 7; si++)
+                {
+                    recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si] >> 24);
+                    recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si]>>16);
+                    recv_buff[sx++] = (u8)(SPI_Receive_DataForC[si]>>8);
+                    recv_buff[sx++] = (u8)SPI_Receive_DataForC[si];
+                }
             }
         }
         while (ADF7030_GPIO3 == 1)
@@ -737,8 +753,8 @@ void SCAN_RECEIVE_PACKET(void)
     {
         UART1_INIT(1);
         Rx_Num = rx_sum;
-        display_rx_databuff(recv_buff,12,rx_sum,0);
-
+        if(Flag_Speed_HighLow == 0) display_rx_databuff(recv_buff,12,rx_sum,0);
+        else    display_rx_databuff(recv_buff,28,rx_sum,0);
         chbuf[0] = '\r';
         chbuf[1] = '\n';
         Send_Data(chbuf,2);
@@ -749,38 +765,57 @@ void SCAN_RECEIVE_PACKET(void)
         chbuf[0] = '\r';
         chbuf[1] = '\n';
         Send_Data(chbuf,2);
-
-        if(rx_sum > 25) rx_sum = 25;
-        if(rx_sum > 3)
+        if(Flag_Speed_HighLow == 0)
         {
-            ipage = rx_sum / 3;
-            ipack = rx_sum % 3;
-            if(ipage > 3)
+            if(rx_sum > 25) rx_sum = 25;
+            if(rx_sum > 3)
             {
-                ipage = 3;
+                ipage = rx_sum / 3;
+                ipack = rx_sum % 3;
+                if(ipage > 3)
+                {
+                    ipage = 3;
+                    ipack = 0;
+                }
+            }
+            else
+            {
+                ipage = 0;
                 ipack = 0;
+            }
+            for(si=0;si<rx_sum*12;si++)
+            {
+                chbuf[0] = hex_asc(recv_buff[si]/16);
+                chbuf[1] = hex_asc(recv_buff[si]%16);
+                chbuf[2] = ' ';//ascii 'space';
+                Send_Data(chbuf,3);
+                if((si+1)%12 == 0)
+                {
+                    chbuf[0] = '\r';
+                    chbuf[1] = '\n';
+                    Send_Data(chbuf,2);
+                }
+                ClearWDT();
             }
         }
         else
         {
-            ipage = 0;
-            ipack = 0;
-        }
-        for(si=0;si<rx_sum*12;si++)
-        {
-            chbuf[0] = hex_asc(recv_buff[si]/16);
-            chbuf[1] = hex_asc(recv_buff[si]%16);
-            chbuf[2] = ' ';//ascii 'space';
-            Send_Data(chbuf,3);
-            if((si+1)%12 == 0)
+            if(rx_sum > 10) rx_sum = 10;
+            for(si=0;si<rx_sum*28;si++)
             {
-                chbuf[0] = '\r';
-                chbuf[1] = '\n';
-                Send_Data(chbuf,2);
+                chbuf[0] = hex_asc(recv_buff[si]/16);
+                chbuf[1] = hex_asc(recv_buff[si]%16);
+                chbuf[2] = ' ';//ascii 'space';
+                Send_Data(chbuf,3);
+                if((si+1)%28 == 0)
+                {
+                    chbuf[0] = '\r';
+                    chbuf[1] = '\n';
+                    Send_Data(chbuf,2);
+                }
+                ClearWDT();
             }
-            ClearWDT();
         }
-        //for(si = 0;si < 300; si++)  recv_buff[si] = 0;
         rx_sum = 0;
         flag_rx = 0;
         sx = 0;

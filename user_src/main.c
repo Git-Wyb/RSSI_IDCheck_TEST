@@ -84,10 +84,27 @@ void main(void)
     Power_ON_sendVer();
 
 	FLAG_Freq_Select_429or426MHz=Freq_Select_429or426MHz;
-	if(FLAG_Freq_Select_429or426MHz==0)Channels=1;//FLAG_ID_Login_FromUART=1;
-	else Channels=11;//FLAG_ID_Login_FromUART=0;
-    display_RxNum(0);
-    display_Freq(426075000);
+	if(FLAG_Freq_Select_429or426MHz==0)
+    {
+        Channels=1;//FLAG_ID_Login_FromUART=1;
+        Flag_Speed_HighLow = 0;
+        display_RxNum(0);
+        display_Freq(426075000);
+    }
+	else
+    {
+        Channels=11;//FLAG_ID_Login_FromUART=0;
+        Flag_Speed_HighLow = 1;
+        display_RxNum(0);
+        display_Freq(429350000);
+        Radio_Date_Type=2;
+        PROFILE_CH_FREQ_32bit_200002EC = 429350000;
+        ADF7030Cfg_pointer=ADF7030Cfg_4dot8k;
+        PROFILE_RADIO_AFC_CFG1_32bit_2000031C = 0x0005005B;
+        PROFILE_RADIO_DATA_RATE_32bit_200002FC = 0x64000030;
+        PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100E;
+        ADF7030Init();
+    }
     while (1)
     {
         if(FLAG_Freq_Select_429or426MHz!=Freq_Select_429or426MHz)while(1);
