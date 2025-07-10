@@ -64,6 +64,7 @@ void main(void)
     beep_init();       // ???
     ClearWDT();        // Service the WDT
 
+    UART1_INIT();
     if(KEY_SW2_open == 0)
         PROFILE_CH_FREQ_32bit_200002EC = 426075000;
     else
@@ -73,7 +74,6 @@ void main(void)
     PROFILE_GENERIC_PKT_FRAME_CFG1_32bit_20000500 = 0x0000100C;
     ADF7030Init();     //?????
 
-    UART1_INIT();      // UART1 for PC Software
     _EI();             // ????
     ClearWDT();        // Service the WDT
     lcd_init();
