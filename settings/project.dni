@@ -1,7 +1,7 @@
 [DebugChecksum]
 <<<<<<< HEAD
 <<<<<<< HEAD
-Checksum=-894739437
+Checksum=1943950462
 =======
 Checksum=1759408442
 >>>>>>> SCX1702_LCD_for_RSSI
@@ -102,6 +102,8 @@ Fmt19={W}42:cache	4	0
 LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
+[Breakpoints]
+Count=0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -109,8 +111,6 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
-[Breakpoints]
-Count=0
 [Aliases]
 A0=_ "" ""
 A1=_ "D:\MyCloud\Working\Windowshade\Windowshade7030\user_src\ADF7030_1.c" "F:\Source Code\bunka-s\Bunka STM8L151G6 RX_ADF7030 Source CRX1831DC\Windowshade7030\user_src\ADF7030_1.c"

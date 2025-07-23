@@ -335,14 +335,25 @@ void lcd_desplay(void)
 #else
 	if((KEY_SW4_close==0)&&(FLAG_KEY_SW4_close==0))
 	  {
-          FLAG_KEY_SW4_close=1;FLAG_APP_TX_fromUART=1;
-          //if(flag_mode == 0)
-          {
-              set_check_rssi++;
-              if(set_check_rssi > 12)  set_check_rssi = 1;
-              display_set_rssi(set_check_rssi * 100,120);
-              eeprom_write_byte(AddrEeprom_SetRssi,set_check_rssi);
-          }
+            FLAG_KEY_SW4_close=1;FLAG_APP_TX_fromUART=1;
+            Flag_Display_key_SW3 = 1;
+            lcd_clear(1);
+            //*************************DISPLAY  "¹«Ë¾"
+            //Head_0x5515_or_0x5456=0x5515;
+            display_map_xy(40+0*25,0,24,24,char_company+0*72);
+            display_map_xy(40+1*25,0,24,24,char_company+1*72);
+
+            //*************************DISPLAY  "ID_CHECKER"
+            display_map_xy(4,32,12,24,char_ID_CHECKER);
+            display_map_xy(4+1*12,32,12,24,char_ID_CHECKER+1*36);
+            display_map_xy(4+3*12,32,12,24,char_ID_CHECKER+3*36);
+            display_map_xy(4+4*12,32,12,24,char_ID_CHECKER+4*36);
+            display_map_xy(4+5*12,32,12,24,char_ID_CHECKER+5*36);
+            display_map_xy(4+6*12,32,12,24,char_ID_CHECKER+6*36);
+            display_map_xy(4+7*12,32,12,24,char_ID_CHECKER+7*36);
+            display_map_xy(4+8*12,32,12,24,char_ID_CHECKER+8*36);
+            display_map_xy(4+9*12,32,12,24,char_ID_CHECKER+9*36);
+            display_set_rssi((set_check_rssi * 100),120);
       }
 	else if(KEY_SW4_close==1)FLAG_KEY_SW4_close=0;
 
@@ -360,7 +371,13 @@ void lcd_desplay(void)
 	else if(KEY_SW3_stop==1)FLAG_KEY_SW3_stop=0;
 
 	if((KEY_SW2_open==0)&&(FLAG_KEY_SW2_open==0))
-	  {FLAG_KEY_SW2_open=1;FLAG_APP_TX_fromUART=1;}
+	  {
+          FLAG_KEY_SW2_open=1;FLAG_APP_TX_fromUART=1;
+          set_check_rssi++;
+          if(set_check_rssi > 12)  set_check_rssi = 1;
+          display_set_rssi(set_check_rssi * 100,120);
+          eeprom_write_byte(AddrEeprom_SetRssi,set_check_rssi);
+      }
 	else if(KEY_SW2_open==1)FLAG_KEY_SW2_open=0;
 #endif
 
