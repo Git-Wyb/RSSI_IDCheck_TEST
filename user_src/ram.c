@@ -155,7 +155,7 @@ Wireless_Body Struct_DATA_Packet_Contro,Struct_DATA_Packet_Contro_buf,Last_Struc
 Wireless_Body Uart_Struct_DATA_Packet_Contro;
 
 u8 TIME_TX_RSSI_Scan=0;
-
+u8 set_login_rssi = 5;
 
 
 

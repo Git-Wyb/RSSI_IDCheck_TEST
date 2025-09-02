@@ -20,7 +20,7 @@ void LCD_display_argos_rssi(unsigned int m, unsigned char y);
 
 extern const unsigned char char_Large_L11_H24[];
 extern const unsigned char char_ID[];
-extern const unsigned char char_ID_CHECKER[]; 
+extern const unsigned char char_ID_CHECKER[];
 extern const unsigned char char_company[];
 
 extern const unsigned char char_Small[];
@@ -41,8 +41,9 @@ extern UINT16 time_LCD_Display;
 extern u8 FLAG_KEY_SW4_close;
 extern u8 FLAG_KEY_SW3_stop;
 extern u8 FLAG_KEY_SW2_open;
-
-
+void display_set_rssi(u16 rs,u8 y);
+void display_freq(u8 x,u8 y,u32 freq);
+void display_OKNG(u8 x,u8 y,u8 type,u16 rs);
 
 
 

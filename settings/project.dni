@@ -1,7 +1,7 @@
 [DebugChecksum]
 <<<<<<< HEAD
 <<<<<<< HEAD
-Checksum=1790317663
+Checksum=552530091
 =======
 Checksum=1759408442
 >>>>>>> SCX1702_LCD_for_RSSI
@@ -82,17 +82,20 @@ Fmt2={W}0:test_AGC	2	0
 Fmt3={W}0:test_RSSI	3	0
 Fmt4={W}1:ADF7030_RESIGER_VALUE_READ	4	0
 Fmt5={W}1:ADF7030_Read_OneByte	4	0
-Fmt6={W}1:GENERIC_PKT_FRAME_CFG1_13_15	3	0
-Fmt7={W}1:PREAMBLE_UNIT	3	0
-Fmt8={W}1:TRX_IRQ0_TYPE	3	0
-Fmt9={W}1:TRX_IRQ1_TYPE	3	0
-Fmt10={W}42:ADF7030_RESIGER_VALUE_READ	4	0
-Fmt11={W}42:DATA_Packet_Control	4	0
-Fmt12={W}42:PROFILE_CH_FREQ_32bit_200002EC	3	0
-Fmt13={W}42:PROFILE_RADIO_AFC_CFG1_32bit_2000031C	4	0
-Fmt14={W}42:RAM_RSSI_AVG	4	0
-Fmt15={W}42:Tx_Rx_mode	4	0
-Fmt16={W}42:cache	4	0
+Fmt6={W}1:Channels	3	0
+Fmt7={W}1:FLAG_KEY_SW2_open	3	0
+Fmt8={W}1:GENERIC_PKT_FRAME_CFG1_13_15	3	0
+Fmt9={W}1:PREAMBLE_UNIT	3	0
+Fmt10={W}1:TRX_IRQ0_TYPE	3	0
+Fmt11={W}1:TRX_IRQ1_TYPE	3	0
+Fmt12={W}1:Uart_Type	3	0
+Fmt13={W}42:ADF7030_RESIGER_VALUE_READ	4	0
+Fmt14={W}42:DATA_Packet_Control	4	0
+Fmt15={W}42:PROFILE_CH_FREQ_32bit_200002EC	3	0
+Fmt16={W}42:PROFILE_RADIO_AFC_CFG1_32bit_2000031C	4	0
+Fmt17={W}42:RAM_RSSI_AVG	4	0
+Fmt18={W}42:Tx_Rx_mode	4	0
+Fmt19={W}42:cache	4	0
 [DataSample]
 LogEnabled=0
 GraphEnabled=0
@@ -105,7 +108,8 @@ Category=_ 0
 LoggingEnabled=_ 0
 LogFile=_ ""
 [Breakpoints]
-Count=0
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\user_src\ID_Decode.c}.266.2" 1 0 0 0 "" 0 ""
+Count=1
 [Aliases]
 A0=_ "" ""
 A1=_ "D:\MyCloud\Working\Windowshade\Windowshade7030\user_src\ADF7030_1.c" "F:\Source Code\bunka-s\Bunka STM8L151G6 RX_ADF7030 Source CRX1831DC\Windowshade7030\user_src\ADF7030_1.c"

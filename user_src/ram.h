@@ -8,8 +8,22 @@
 
 #define DEF_APP_TX_freq 4    //通信机确定发送4次
 
-
-
+/* Login Rssi Set */
+#define RSSI_SET_00 0xF0
+#define RSSI_SET_10 0xF1
+#define RSSI_SET_20 0xF2
+#define RSSI_SET_30 0xF3
+#define RSSI_SET_40 0xF4
+#define RSSI_SET_50 0xF5
+#define RSSI_SET_60 0xF6
+#define RSSI_SET_70 0xF7
+#define RSSI_SET_80 0xF8
+#define RSSI_SET_90 0xF9
+#define RSSI_SET_100 0xFA
+#define RSSI_SET_110 0xFB
+#define RSSI_SET_120 0xFC
+#define Tx_RssiSet_Ack  0xFD
+#define PROFILE_LOGIN_RSSISET_FREQ 429125000
 
 extern uFLAG FLAG_test1;
 //************************************************
@@ -69,7 +83,9 @@ extern volatile uFLAG FLAG2;
 #define FLAG_APP_TX_fromUART FLAG2.BIT.Bit1
 #define FLAG_APP_RXstart FLAG2.BIT.Bit2
 #define FLAG_ID_Login_FromUART FLAG2.BIT.Bit3
-#define FLAG_Freq_Select_429or426MHz FLAG2.BIT.Bit4     
+#define FLAG_Freq_Select_429or426MHz FLAG2.BIT.Bit4
+#define FLAG_tx_over FLAG2.BIT.Bit5
+#define FLAG_clear FLAG2.BIT.Bit6
 //************************************************
 
 
@@ -190,6 +206,7 @@ extern Wireless_Body Struct_DATA_Packet_Contro,Struct_DATA_Packet_Contro_buf,Las
 extern Wireless_Body Uart_Struct_DATA_Packet_Contro;
 
 extern u8 TIME_TX_RSSI_Scan;
+extern u8 set_login_rssi;
 
 
 #endif
